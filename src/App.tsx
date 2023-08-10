@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {routes} from "./routes";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {CtxProvider} from "./components/base/ctxProvider";
+
+const defaultTheme = createTheme({
+    palette: {
+        primary: {
+            main: "#000",
+        },
+        secondary: {
+            main: "#333",
+        },
+    },
+});
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <CtxProvider>
+            <Router>
+                <ThemeProvider theme={defaultTheme}>
+                    <Routes>
+                        {routes.map((route, index) => (
+                            <Route key={index} path={route.path} element={route.component}/>
+                        ))}
+                    </Routes>
+                </ThemeProvider>
+            </Router>
+        </CtxProvider>
+    );
 }
 
 export default App;

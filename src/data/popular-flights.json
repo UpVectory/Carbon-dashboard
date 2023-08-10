@@ -1,0 +1,74 @@
+{
+  "flights": [
+    {
+      "id": "1",
+      "departure": "JFK",
+      "arrival": "LHR",
+      "distance": "5539.38",
+      "carbon": "2373.4"
+    },
+    {
+      "id": "2",
+      "departure": "DXB",
+      "arrival": "LHR",
+      "distance": "5497.66",
+      "carbon": "2355.53"
+    },
+    {
+      "id": "3",
+      "departure": "CAI",
+      "arrival": "JED",
+      "distance": "1216.61",
+      "carbon": "495.72"
+    },
+    {
+      "id": "4",
+      "departure": "KUL",
+      "arrival": "SIN",
+      "distance": "297.46",
+      "carbon": "121.2"
+    },
+    {
+      "id": "5",
+      "departure": "BOM",
+      "arrival": "DXB",
+      "distance": "1926.07",
+      "carbon": "784.8"
+    },
+    {
+      "id": "6",
+      "departure": "DEL",
+      "arrival": "DXB",
+      "distance": "2182.63",
+      "carbon": "889.33"
+    },
+    {
+      "id": "7",
+      "departure": "JFK",
+      "arrival": "LAX",
+      "distance": "3974.01",
+      "carbon": "1619.25"
+    },
+    {
+      "id": "8",
+      "departure": "CUN",
+      "arrival": "MEX",
+      "distance": "1284.3",
+      "carbon": "523.3"
+    },
+    {
+      "id": "9",
+      "departure": "LAX",
+      "arrival": "SFO",
+      "distance": "543.16",
+      "carbon": "221.32"
+    },
+    {
+      "id": "10",
+      "departure": "MAD",
+      "arrival": "BNC",
+      "distance": "5547.61",
+      "carbon": "2260.43"
+    }
+  ]
+}
