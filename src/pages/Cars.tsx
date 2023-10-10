@@ -1,13 +1,37 @@
-import {Layout} from "../components/modules/Layout";
+import {Layout} from "../components/modules";
 import {useContext} from "react";
-import {MyGlobalContext} from "../components/base/ctxProvider/context";
+import {MyGlobalContext, TableRowCars} from "../components/base";
+import {BarChart, TreeOffsets} from "../components/modules";
+import data from '../data/cars.json'
 
 export const Cars = () => {
-    const {length , weight} = useContext(MyGlobalContext)
+    const {length , weight, carbonCar,carsBarChartArr} = useContext(MyGlobalContext)
+    const {cars} = data
 
     return <Layout>
-        <h2>length: {length}</h2>
-        <h2>weight : {weight}</h2>
-        cars
+        <section style={{display: "flex"}}>
+            <div style={{width: '60%'}}>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Fuel type</th>
+                        <th>Distance, {length}</th>
+                        <th>Carbon, {weight}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {cars.map((car, index) => {
+                        return <TableRowCars item={car} key={index}/>
+                    })}
+                    </tbody>
+                </table>
+            </div>
+        <div style={{width: '40%'}}>
+            <BarChart data={carsBarChartArr}/>
+            <TreeOffsets carbon={carbonCar}/>
+        </div>
+        </section>
     </Layout>
 }

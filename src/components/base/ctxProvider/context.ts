@@ -1,13 +1,11 @@
 import {createContext, useContext} from "react";
 
-
-
-
 export type Length = 'km' | 'mi'
 export type Weight = 'kg' | 'lb'
 export type BarChartType = {
     id : number
     carbon : number
+    distance: number
 }
 
 export type GlobalContext = {
@@ -23,6 +21,8 @@ export type GlobalContext = {
     setCarbonCar: (c:number)=>void
     flightBarChartArr: BarChartType[]
     setFlightBarChartArr: (c: BarChartType[])=>void
+    carsBarChartArr: BarChartType[]
+    setCarsBarChartArr: (c: BarChartType[])=>void
 }
 
 export const MyGlobalContext = createContext<GlobalContext>({
@@ -37,7 +37,9 @@ export const MyGlobalContext = createContext<GlobalContext>({
     carbonCar: 0,
     setCarbonCar:c=>{},
     flightBarChartArr: [],
-    setFlightBarChartArr: (c:BarChartType[]) => {}
+    setFlightBarChartArr: (c:BarChartType[]) => {},
+    carsBarChartArr: [],
+    setCarsBarChartArr: (c:BarChartType[]) => {},
 })
 
 export const useGlobalContext = () => useContext(MyGlobalContext)

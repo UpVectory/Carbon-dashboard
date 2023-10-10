@@ -1,0 +1,52 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "type": "A-segment",
+      "gasCarbon": 0.172310,
+      "dieselCarbon": 0.134024
+    },
+    {
+      "id": 2,
+      "type": "B-segment",
+      "gasCarbon": 0.190400,
+      "dieselCarbon": 0.164524
+    },
+    {
+      "id": 3,
+      "type": "C-segment",
+      "gasCarbon": 0.220660,
+      "dieselCarbon": 0.179404
+    },
+    {
+      "id": 4,
+      "type": "D-segment",
+      "gasCarbon": 0.256320,
+      "dieselCarbon": 0.200824
+    },
+    {
+      "id": 5,
+      "type": "E-segment",
+      "gasCarbon": 0.282660,
+      "dieselCarbon": 0.217094
+    },
+    {
+      "id": 6,
+      "type": "F-segment",
+      "gasCarbon": 0.418570,
+      "dieselCarbon": 0.264144
+    },
+    {
+      "id": 7,
+      "type": "4x4",
+      "gasCarbon": 0.271340,
+      "dieselCarbon": 0.252704
+    },
+    {
+      "id": 8,
+      "type": "Sports car",
+      "gasCarbon": 0.309530,
+      "dieselCarbon": 0.211014
+    }
+  ]
+}

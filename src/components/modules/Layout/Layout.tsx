@@ -1,9 +1,9 @@
 import React, {ReactNode, useContext, useState} from "react";
 import {routesPath} from "../../../routes";
 import {Link} from "react-router-dom";
-import {Grid, Switch} from "@mui/material";
-import {MyGlobalContext} from "../../base/ctxProvider/context";
-import {Navigation} from "../../base/Navigation";
+import {FormControlLabel, Grid, makeStyles, Stack, Switch} from "@mui/material";
+import {CustomSwitch, MyGlobalContext, Navigation} from "../../base";
+import styles from './Layout.module.scss'
 
 
 interface LayoutProps {
@@ -12,14 +12,14 @@ interface LayoutProps {
 
 export const Layout = ({children}: LayoutProps) => {
     const {length, weight, setLength, setWeight} = useContext(MyGlobalContext)
-
     const [checkLength, setCheckLength] = useState(length === 'km');
     const [checkWeight, setCheckWeight] = useState(weight === 'kg');
 
-    return <Grid height={'100vh'} container spacing={2}>
-        <Grid px={2} py={8} display={'flex'} flexDirection={'column'} justifyContent={'space-between'} item xs={1}>
+    return <Grid height={'100vh'} container flexWrap={'nowrap'}>
+        <Stack
+            className={styles.navigation}>
             <div>
-                <Link to={routesPath.home}>
+                <Link className={styles.logo} to={routesPath.home}>
                     <img src="/logo.png" width='100%' alt="Home page"/>
                 </Link>
             </div>
@@ -28,32 +28,28 @@ export const Layout = ({children}: LayoutProps) => {
                 display: "flex",
                 flexDirection: "column"
             }}>
-                <Switch
-                    checked={checkLength}
-                    onChange={({target}) => {
-                        setCheckLength(target.checked)
-                        setLength(length === 'km' ? "mi" : "km")
-                    }}
-                    inputProps={{'aria-label': 'controlled'}}
-                />
-                <Switch
-                    checked={checkWeight}
-                    onChange={({target}) => {
-                        setCheckWeight(target.checked)
-                        setWeight(weight === 'kg' ? "lb" : "kg")
-                    }}
-                    inputProps={{'aria-label': 'controlled'}}
-                />
+
+                <CustomSwitch
+                    label1={'mi'}
+                    label2={'km'}
+                    value={checkLength}
+                    setGlobalValue={setLength}
+                    setValue={setCheckLength}
+                    type={length}/>
+
+                <CustomSwitch
+                    label1={'lb'}
+                    label2={'kg'}
+                    value={checkWeight}
+                    setGlobalValue={setWeight}
+                    setValue={setCheckWeight}
+                    type={weight}/>
             </div>
-        </Grid>
+        </Stack>
+        <Stack width={'100%'} height={'100%'} p={'32px'}>
 
-        <Grid item xs={11}>
-            <main>
-                {children}
-            </main>
-        </Grid>
+            {children}
 
+        </Stack>
     </Grid>
-
-
 }

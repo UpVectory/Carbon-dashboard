@@ -17,15 +17,16 @@ export const routes : RouteType[] = [
         name: 'Hello'
     },
     {
-        path: routesPath.cars,
-        component: <Cars/>,
-        name: 'Car trips'
-    },
-    {
         path: routesPath.plane,
         component: <Plane/>,
         name: 'Flights'
     },
+    {
+        path: routesPath.cars,
+        component: <Cars/>,
+        name: 'Car trips'
+    },
+
     {
         path: routesPath.total,
         component: <Total/>,

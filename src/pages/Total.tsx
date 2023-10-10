@@ -1,7 +1,13 @@
-import {Layout} from "../components/modules/Layout";
+import { Layout, TreeOffsets} from "../components/modules";
+import {useContext} from "react";
+import {MyGlobalContext} from "../components/base";
 
 export const Total = () => {
+    const {carbon} = useContext(MyGlobalContext)
   return <Layout>
-      total
+      <div style={{width: '40%'}}>
+          {/*<BarChart data={carsBarChartArr}/>*/}
+          <TreeOffsets carbon={carbon}/>
+      </div>
   </Layout>
 }

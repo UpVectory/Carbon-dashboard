@@ -1,0 +1,23 @@
+.switchText {
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 111;
+  cursor: pointer;
+  color: #61B766;
+  &Left {
+    left: 12px
+  }
+  &Right {
+    right: 12px
+  }
+}
+
+.active {
+  color: #fff;
+}
