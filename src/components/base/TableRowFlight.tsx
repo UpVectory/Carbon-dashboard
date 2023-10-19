@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import {BarChartType, MyGlobalContext} from "./ctxProvider/context";
 import {apiAirports} from '../../api'
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import {Flights} from "../../types";
 
 type TableRowProps = {
@@ -28,8 +28,7 @@ export const TableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
         flightBarChartArr
     } = useContext(MyGlobalContext)
 
-    const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id-1].distance)
-
+    const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id - 1].distance)
 
     const increase = () => {
 
@@ -38,11 +37,10 @@ export const TableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
         setCarbon(carbon + (parseInt(item.carbon)))
 
         let newFlightBarChartArr: BarChartType[] = Object.assign(flightBarChartArr)
-        newFlightBarChartArr.map((value, index, array) => {
+        newFlightBarChartArr.forEach((value, index, array) => {
                 if (`${value.id + 1}` === item.id) {
                     array[index].carbon = +item.carbon * (qtyFlights + 1)
                     array[index].distance += 1
-
                 }
             }
         )
@@ -54,7 +52,7 @@ export const TableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
         setCarbon((carbon - (parseInt(item.carbon))))
 
         let newFlightBarChartArr: BarChartType[] = Object.assign(flightBarChartArr)
-        newFlightBarChartArr.map((value, index, array) => {
+        newFlightBarChartArr.forEach((value, index, array):void => {
                 if (`${value.id + 1}` === item.id) {
                     array[index].carbon = +item.carbon * (qtyFlights - 1)
                     array[index].distance -= 1
@@ -67,19 +65,39 @@ export const TableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
     const departure = apiAirports.filter((v) => v.iata_code === item.departure)
     const arrival = apiAirports.filter((v) => v.iata_code === item.arrival)
 
-    console.log(flightBarChartArr)
     return <tr>
         <th>{item.id}</th>
-        <th>{`${departure[0].municipality} / ${item.departure}`}</th>
-        <th>{`${arrival[0].municipality} / ${item.arrival}`}</th>
+        <th>{`${departure[0].municipality}  (${item.departure})`}</th>
+        <th>{`${arrival[0].municipality}  (${item.arrival})`}</th>
         <th>{length === 'km' ? item.distance : `${(+item.distance * 0.621371).toFixed(2)}`}</th>
         <th>
-            <button disabled={qtyFlights <= 0} onClick={decrease}>-</button>
-            <input type="number" onChange={(event) => {
-                setQtyFlights(+event.target.value)
-                setCarbon(carbon)
-            }} value={qtyFlights}/>
-            <button disabled={qtyFlights >= 99} onClick={increase}>+</button>
+            <span className={'input'}>
+                <button disabled={qtyFlights <= 0} onClick={decrease}>-</button>
+                {/*<input type="number"  value={qtyFlights}/>*/}
+                <TextField
+                    variant="standard"
+                    sx={{
+                        border: 'none',
+                        width: '20px',
+                        textAlign: 'center',
+                        '& .MuiInputBase-root': {
+                            '&:after': {
+                                borderBottom: 'none'
+                            },
+                            '&:before': {
+                                borderBottom: 'none'
+                            }
+                        }
+                }}
+                    onChange={(event) => {
+                        setQtyFlights(+event.target.value)
+                        setCarbon(carbon)
+                    }}
+                    type={"number"}
+                    value={qtyFlights}
+                />
+                <button disabled={qtyFlights >= 99} onClick={increase}>+</button>
+            </span>
         </th>
         <th style={{position: "relative"}}>{weight === 'kg' ? `${(+item.carbon * qtyFlights).toFixed(2)}` : `${(+item.carbon * 2.20462 * qtyFlights).toFixed(2)}`}
             {item.custom && <span style={{
@@ -90,17 +108,15 @@ export const TableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
 
             }}><Button onClick={() => {
                 const fliIdexDash = flights.findIndex((v) => {
-                    console.log('v: ',v)
-                    console.log('item: ',item)
                     return v.id === item.id
                 })
-                const fliIndexBarChart = flightBarChartArr.findIndex((v) => v.id === (+item.id-1))
+                const fliIndexBarChart = flightBarChartArr.findIndex((v) => v.id === (+item.id - 1))
 
-                const updFl:Flights[] = Object.assign(flights)
-                const updFlBar:BarChartType[] = Object.assign(flightBarChartArr)
+                const updFl: Flights[] = Object.assign(flights)
+                const updFlBar: BarChartType[] = Object.assign(flightBarChartArr)
 
-                updFl.splice(fliIdexDash , 1)
-                flightBarChartArr.splice(fliIndexBarChart,1)
+                updFl.splice(fliIdexDash, 1)
+                flightBarChartArr.splice(fliIndexBarChart, 1)
 
                 setFlights(updFl)
                 setFlightBarChartArr(updFlBar)
@@ -109,7 +125,6 @@ export const TableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
                 width: '20px',
                 padding: 0,
                 height: '100%',
-
             }}>x</Button></span>}</th>
     </tr>
 }

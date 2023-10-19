@@ -2,14 +2,14 @@ import * as React from "react";
 import {ReactNode, useState} from "react";
 import {BarChartType, Length, MyGlobalContext, Weight} from "./context";
 import data from '../../../data/popular-flights.json'
-import carsData from '../../../data/cars.json'
+import carsData from "../../../data/cars.json"
 
 const {flights} = data
 const {cars} = carsData
 
 let flightsCarbon:BarChartType[]=[];
 let carsCarbon:BarChartType[]=[]
-flights.map((f, i )=>{
+flights.forEach((f, i )=>{
     if (flightsCarbon.findIndex(({id})=>id===i)<0) {
         flightsCarbon.push({
             id: i,
@@ -18,7 +18,7 @@ flights.map((f, i )=>{
         })
     }
 })
-cars.map((c, i )=>{
+cars.forEach((c, i )=>{
     if (carsCarbon.findIndex(({id})=>id===i)<0) {
         carsCarbon.push({
             id: i,

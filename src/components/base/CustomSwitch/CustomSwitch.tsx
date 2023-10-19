@@ -1,6 +1,6 @@
+import React, {useState} from "react";
 import styles from "./CustomSwitch.module.scss";
 import {Switch} from "@mui/material";
-import React, {useState} from "react";
 
 
 
@@ -14,8 +14,6 @@ type CustomSwitchProps = {
 }
 export const CustomSwitch = ({label1, label2, value, setValue, type, setGlobalValue}: CustomSwitchProps) => {
     const [active , setActive] = useState(type === label2)
-
-    console.log()
 
     return <div style={{
         position:"relative",
@@ -40,7 +38,11 @@ export const CustomSwitch = ({label1, label2, value, setValue, type, setGlobalVa
                     background: '#61B766',
                     '&.Mui-checked': {
                         background: '#61B766',
-                        transform: 'translateX(38px)'
+                        transform: 'translateX(38px)',
+                        '&:hover': {
+                            background: '#61B766',
+                            opacity: '0.7'
+                        }
                     },
                     '&:hover': {
                         background: '#61B766',

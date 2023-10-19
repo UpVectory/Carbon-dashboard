@@ -42,6 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #ECF5ED;
+  min-width: 1440px;
 }
 
 code {
@@ -66,6 +67,14 @@ h1 {
   line-height: 112%;
 }
 
+h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
 p {
   font-family: Manrope, sans-serif;
   font-size: 16px;
@@ -73,3 +82,97 @@ p {
   font-weight: 400;
   line-height: normal;
 }
+
+a {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  color: #000000;
+}
+
+button {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  color: #000000;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  color: #000000;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead {
+  /*display: table-row;*/
+  border-bottom: 1px solid #ECF5ED;
+  border-top: 1px solid #ECF5ED;
+}
+
+thead th {
+  padding: 20px 0;
+}
+
+
+tr {
+
+}
+
+tr:not(:last-child) {
+  border-bottom: 1px solid #ECF5ED;
+}
+
+th {
+  display: table-cell;
+  padding: 12px 0;
+}
+
+th span.input {
+  display: flex;
+  width: min-content;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+tbody {}

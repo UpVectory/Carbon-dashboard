@@ -1,8 +1,7 @@
-import {Layout} from "../components/modules";
 import {useContext} from "react";
-import {MyGlobalContext, TableRowCars} from "../components/base";
-import {BarChart, TreeOffsets} from "../components/modules";
-import data from '../data/cars.json'
+import {Layout, BarChart, TreeOffsets} from "../../components/modules";
+import {MyGlobalContext, TableRowCars} from "../../components/base";
+import data from '../../data/cars.json'
 
 export const Cars = () => {
     const {length , weight, carbonCar,carsBarChartArr} = useContext(MyGlobalContext)

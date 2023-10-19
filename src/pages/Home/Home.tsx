@@ -1,4 +1,4 @@
-import {Layout} from "../components/modules";
+import {Layout} from "../../components/modules";
 
 export const Home = () => {
     return <Layout>

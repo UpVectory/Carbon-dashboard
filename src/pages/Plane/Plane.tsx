@@ -1,14 +1,12 @@
-import {Layout} from "../components/modules";
-import data from '../data/popular-flights.json'
-import {useContext, useEffect, useState} from "react";
-import {MyGlobalContext} from "../components/base";
-import {TableRowFlight} from "../components/base";
-import {TreeOffsets} from "../components/modules";
-import {BarChart} from "../components/modules";
+import React, {useContext, useEffect, useState} from 'react';
+import {MyGlobalContext, TableRowFlight} from "../../components/base";
+import {Layout, TreeOffsets, BarChart} from "../../components/modules";
 import {Autocomplete, Button, TextField} from "@mui/material";
-import {apiAirports} from '../api'
-import {Flights} from "../types";
-import {BarChartType} from "../components/base/ctxProvider/context";
+import {apiAirports} from '../../api'
+import {Flights} from "../../types";
+import {BarChartType} from "../../components/base/ctxProvider/context";
+import data from '../../data/popular-flights.json'
+import {ReactComponent as RefreshIcon} from "../../assets/refresh-outline_1.svg";
 
 const iataCodeArray: string[] = []
 apiAirports.map((v) => {
@@ -43,10 +41,47 @@ export const Plane = () => {
     }
 
     return <Layout>
-        <div><Button disabled={customFlights.length > 0 || flights.length >= 15} onClick={AddNewHandleClick}
-                     variant={'outlined'}>Add New+</Button></div>
-        <section style={{display: "flex"}}>
-            <div style={{width: '60%'}}>
+
+        <section style={{display: "flex", gap: '20px'}}>
+            <div style={{
+                width: '60%',
+                backgroundColor: '#fff',
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                height: "min-content",
+                borderRadius: '32px',
+            }}>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <h2>Fill up your flights</h2>
+                    <div
+                    style={{display: "flex",
+                    gap: '12px'}}>
+                        {/*reset button*/}
+                        <Button style={{
+                            width: 'min-content',
+                            height: 'min-content',
+                            border: '1px solid #ECF5ED',
+                            padding: '11px',
+                            display: 'flex',
+                            minWidth: '0',
+                        }}><RefreshIcon/></Button>
+                        <Button
+                            style={{
+                                display: 'flex',
+                                padding: '12px 24px',
+                                background: '#61B766',
+                                color: '#fff',
+                                borderRadius: '12px',
+                                border: 'none',
+                                height: "min-content",
+                            }}
+                            disabled={customFlights.length > 0 || flights.length >= 15}
+                            onClick={AddNewHandleClick}
+                            variant={'outlined'}
+                        >Add New+</Button>
+                    </div>
+                </div>
                 <table>
                     <thead>
                     <tr>

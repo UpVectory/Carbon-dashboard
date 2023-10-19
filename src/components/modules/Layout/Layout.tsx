@@ -1,9 +1,9 @@
 import React, {ReactNode, useContext, useState} from "react";
-import {routesPath} from "../../../routes";
 import {Link} from "react-router-dom";
-import {FormControlLabel, Grid, makeStyles, Stack, Switch} from "@mui/material";
+import {Grid, Stack} from "@mui/material";
 import {CustomSwitch, MyGlobalContext, Navigation} from "../../base";
 import styles from './Layout.module.scss'
+import {routesPath} from "../../../routes";
 
 
 interface LayoutProps {

@@ -1,6 +1,6 @@
-import { Layout, TreeOffsets} from "../components/modules";
-import {useContext} from "react";
-import {MyGlobalContext} from "../components/base";
+import React , {useContext} from "react";
+import { Layout, TreeOffsets} from "../../components/modules";
+import {MyGlobalContext} from "../../components/base";
 
 export const Total = () => {
     const {carbon} = useContext(MyGlobalContext)
