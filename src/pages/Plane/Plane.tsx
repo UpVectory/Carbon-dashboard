@@ -6,7 +6,9 @@ import {apiAirports} from '../../api'
 import {Flights} from "../../types";
 import {BarChartType} from "../../components/base/ctxProvider/context";
 import data from '../../data/popular-flights.json'
-import {ReactComponent as RefreshIcon} from "../../assets/refresh-outline_1.svg";
+import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.svg";
+
+import './Plane.scss';
 
 const iataCodeArray: string[] = []
 apiAirports.map((v) => {
@@ -40,82 +42,96 @@ export const Plane = () => {
         setQtyAir(qtyAir + 1)
     }
 
-    return <Layout>
-
-        <section style={{display: "flex", gap: '20px'}}>
-            <div style={{
-                width: '60%',
-                backgroundColor: '#fff',
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                height: "min-content",
-                borderRadius: '32px',
-            }}>
-                <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                    <h2>Fill up your flights</h2>
-                    <div
-                    style={{display: "flex",
-                    gap: '12px'}}>
-                        {/*reset button*/}
-                        <Button style={{
-                            width: 'min-content',
-                            height: 'min-content',
-                            border: '1px solid #ECF5ED',
-                            padding: '11px',
+  return (
+    <Layout>
+      <section
+        className="dashboard"
+        // style={{ display: "flex", gap: '20px' }}
+      >
+        <div style={{
+            // width: '60%',
+            // backgroundColor: '#fff',
+            // padding: '32px',
+            // display: 'flex',
+            // flexDirection: 'column',
+            // height: "min-content",
+            // borderRadius: '32px',
+        }}
+          className="dashboard__table dashboard__item"
+        >
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <h2>Fill up your flights</h2>
+                <div
+                style={{display: "flex",
+                gap: '12px'}}>
+                    {/*reset button*/}
+                    <Button style={{
+                        width: 'min-content',
+                        height: 'min-content',
+                        border: '1px solid #ECF5ED',
+                        padding: '11px',
+                        display: 'flex',
+                        minWidth: '0',
+                    }}><RefreshIcon/></Button>
+                    <Button
+                        style={{
                             display: 'flex',
-                            minWidth: '0',
-                        }}><RefreshIcon/></Button>
-                        <Button
-                            style={{
-                                display: 'flex',
-                                padding: '12px 24px',
-                                background: '#61B766',
-                                color: '#fff',
-                                borderRadius: '12px',
-                                border: 'none',
-                                height: "min-content",
-                            }}
-                            disabled={customFlights.length > 0 || flights.length >= 15}
-                            onClick={AddNewHandleClick}
-                            variant={'outlined'}
-                        >Add New+</Button>
-                    </div>
+                            padding: '12px 24px',
+                            background: '#61B766',
+                            color: '#fff',
+                            borderRadius: '12px',
+                            border: 'none',
+                            height: "min-content",
+                        }}
+                        disabled={customFlights.length > 0 || flights.length >= 15}
+                        onClick={AddNewHandleClick}
+                        variant={'outlined'}
+                    >Add New+</Button>
                 </div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Departure</th>
-                        <th>Arrival</th>
-                        <th>Distance, {length}</th>
-                        <th>Amount</th>
-                        <th>Carbon, {weight}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {flights.map((flight, index) => {
-                        return <TableRowFlight setFlights={(v) => setFlights(v)} flights={flights} item={flight}
-                                               key={index}/>
-                    })}
-                    {customFlights.map((v) => {
-                        return <NewAirport
-                            flights={flights}
-                            setFlights={(v) => setFlights(v)}
-                            customFlights={customFlights}
-                            setCustomFlights={(v) => setCustomFlights(v)}
-                            info={v}
-                            key={v.id}/>
-                    })}
-                    </tbody>
-                </table>
             </div>
-            <div style={{width: '40%'}}>
-                <BarChart data={flightBarChartArr}/>
-                <TreeOffsets carbon={carbonFl}/>
-            </div>
-        </section>
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Distance, {length}</th>
+                    <th>Amount</th>
+                    <th>Carbon, {weight}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {flights.map((flight, index) => {
+                  return (
+                    <TableRowFlight
+                      setFlights={(v) => setFlights(v)}
+                      flights={flights}
+                      item={flight}
+                      key={index}
+                    />
+                  )
+                })}
+                {customFlights.map((v) => {
+                    return <NewAirport
+                        flights={flights}
+                        setFlights={(v) => setFlights(v)}
+                        customFlights={customFlights}
+                        setCustomFlights={(v) => setCustomFlights(v)}
+                        info={v}
+                        key={v.id}/>
+                })}
+                </tbody>
+            </table>
+        </div>
+          <div className="dashboard__graph">
+            <BarChart data={flightBarChartArr}/>
+          </div>
+          <div className="dashboard__scoreboard">
+            <TreeOffsets carbon={carbonFl} />
+          </div>
+      </section>
     </Layout>
+  )
 }
 
 

@@ -1,0 +1,39 @@
+@import "../../styles/index";
+
+.dashboard {
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: 60% auto;
+  grid-template-areas: 
+    "dash-table dash-graph"
+    "dash-table dash-score";
+  grid-template-rows: 60% auto;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+
+  &__title {
+    font-size: 24px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: $color-dark;
+  }
+
+
+  &__table {
+    grid-area: dash-table;
+
+    &__link {
+      
+    }
+  }
+
+  &__graph {
+    grid-area: dash-graph;
+  }
+
+  &__scoreboard {
+    grid-area: dash-score;
+  }
+}

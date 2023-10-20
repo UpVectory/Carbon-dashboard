@@ -42,7 +42,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #ECF5ED;
-  min-width: 1440px;
+  width: 100%;
+  /* min-width: 1440px; */
 }
 
 code {
