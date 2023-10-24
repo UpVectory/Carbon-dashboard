@@ -17,20 +17,28 @@ export const BarChart = ({ data }: BarChartProps) => {
   const maxCarbonDataItem
     = data.reduce((acc, item) => item.carbon > acc.carbon ? item : acc);
   
-  const totalCarbonEmission = Math.floor(data.reduce((acc, item) => item.carbon + acc, 0));
+  const totalCarbonEmission = Math.ceil(data.reduce((acc, item) => item.carbon + acc, 0));
   
   const chart = Array(rangeInervalQty + 1).fill(0).map((_, index) => {
-    const maxCarbonValue = maxCarbonDataItem.carbon || 100;
-    const interval = Math.floor(maxCarbonValue / data.length);
+    const maxCarbonValue = maxCarbonDataItem.carbon || 100; // max value will 100 by default
+    const interval = Math.ceil(maxCarbonValue / rangeInervalQty);
+
+    if (index === rangeInervalQty) {
+      return Math.ceil(maxCarbonValue);
+    }
 
     return index * interval;
   });
+
+  console.log(chart)
 
   useEffect(() => {
     if (chartRow.current) {
       setChartRowHeight(chartRow.current.clientHeight);
     }
   }, [])
+
+  console.log(data)
 
   return (
     <div className="barchart">
