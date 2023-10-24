@@ -42,6 +42,7 @@ export const BarChart = ({ data }: BarChartProps) => {
           <div className="barchart__y-values">
             {chart.map((row, index) => (
               <div
+                key={row}
                 className="barchart__y-value"
                 style={{
                   order: -index
@@ -55,6 +56,7 @@ export const BarChart = ({ data }: BarChartProps) => {
           <div className="barchart__y-field">
             {chart.map((_, index) => (
               <div
+                key={index}
                 className="barchart__y-line"
                 ref={element => {
                   if (index === chart.length - 1) {

@@ -2,16 +2,18 @@
 
 .dashboard {
   padding: 20px;
-
-  display: grid;
-  grid-template-columns: 60% auto;
-  grid-template-areas: 
-    "dash-table dash-graph"
-    "dash-table dash-score";
-  grid-template-rows: 60% auto;
-  gap: 20px;
-  width: 100%;
   height: 100%;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 60% minmax(0, 1fr);
+    grid-template-rows: 60% minmax(0, 1fr);
+    grid-template-areas: 
+      "dash-table dash-graph"
+      "dash-table dash-score";
+    height: 100%;
+    gap: 20px;
+  }
 
   &__title {
     font-size: 24px;
