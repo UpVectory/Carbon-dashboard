@@ -136,10 +136,9 @@ export const Plane = () => {
                   <tbody className='table-score__body'>
                     {flights.map((flight, index) => (
                       <TableRowFlight
-                        setFlights={(v) => setFlights(v)}
                         flights={flights}
                         item={flight}
-                        onDeleteFlight={deleteFlight}
+                        onDeleteFlight={(idx) => deleteFlight(idx)}
                         key={index}
                       />
                     ))}

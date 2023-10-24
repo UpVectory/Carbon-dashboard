@@ -19,11 +19,9 @@ type TableRowProps = {
     distance: string,
     carbon: string,
     custom?: boolean,
-    amount?: number,
   };
   flights: Flights[];
   onDeleteFlight: (idx: number) => void;
-  setFlights: (c: Flights[]) => void;
 }
 
 const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
