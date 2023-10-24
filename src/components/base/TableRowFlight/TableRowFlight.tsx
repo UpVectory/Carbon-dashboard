@@ -9,21 +9,24 @@ import { CustomNumInput } from "../CustomNumInput";
 
 import "./TableRowFlight.scss";
 
+import { getNumbersWithCommaSeparate } from "../../../utils/utils";
 
 type TableRowProps = {
-    item: {
-        id: string
-        departure: string
-        arrival: string
-        distance: string
-        carbon: string
-        custom?: boolean
-    }
-    flights: Flights[],
-    setFlights: (c: Flights[]) => void
+  item: {
+    id: string,
+    departure: string,
+    arrival: string,
+    distance: string,
+    carbon: string,
+    custom?: boolean,
+    amount?: number,
+  };
+  flights: Flights[];
+  onDeleteFlight: (idx: number) => void;
+  setFlights: (c: Flights[]) => void;
 }
 
-const MemoTableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
+const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
   const {
       length,
       weight,
@@ -35,19 +38,21 @@ const MemoTableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
       flightBarChartArr
   } = useContext(MyGlobalContext)
 
-  const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id - 1].distance)
-
-  const handlerDeleteCustomFlight = () => {
-    setFlights([...flights].filter(flight => flight.id !== item.id))
-    setFlightBarChartArr([...flightBarChartArr].filter(
-      flight => flight.id !== (+item.id - 1)
-    ))
-  }
+  const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id - 1].distance);
 
   const handlerChangeAmountFlight = (flights: number) => {
+  
+    if (flights > qtyFlights) {
+      setCarbonFl(carbonFl + (parseInt(item.carbon)));
+      setCarbon(carbon + (parseInt(item.carbon)));
+    }
+
+    if (flights < qtyFlights) {
+      setCarbonFl(carbonFl - (parseInt(item.carbon)));
+      setCarbon(carbon - (parseInt(item.carbon)));
+    }
+
     setQtyFlights(flights);
-    setCarbonFl(carbonFl + (parseInt(item.carbon)));
-    setCarbon(carbon + (parseInt(item.carbon)));
 
     let newFlightBarChartArr: BarChartType[] = Object.assign(flightBarChartArr);
     newFlightBarChartArr.forEach((value, index, array) => {
@@ -59,6 +64,10 @@ const MemoTableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
 
     setFlightBarChartArr(newFlightBarChartArr);
   }
+
+  const flightDistance = length === 'km'
+    ? getNumbersWithCommaSeparate(Math.ceil(+item.distance))
+    : getNumbersWithCommaSeparate(Math.ceil(+item.distance * 0.621371));
  
   const carbonWeight = weight === 'kg'
     ? Math.round((+item.carbon * qtyFlights))
@@ -66,6 +75,7 @@ const MemoTableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
 
   const departure = apiAirports.filter((v) => v.iata_code === item.departure);
   const arrival = apiAirports.filter((v) => v.iata_code === item.arrival);
+
 
   return (
     <tr className="table-row-flight">
@@ -79,7 +89,7 @@ const MemoTableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
         {`${arrival[0].municipality}  (${item.arrival})`}
       </td>
       <td className="table-row-flight__item">
-        {length === 'km' ? item.distance : `${(+item.distance * 0.621371).toFixed(2)}`}
+        {flightDistance}
       </td>
       <td className="table-row-flight__item">
         <CustomNumInput
@@ -95,7 +105,7 @@ const MemoTableRowFlight = ({item, flights, setFlights}: TableRowProps) => {
         <span>{carbonWeight}</span>
         {item.custom && (
           <IconButton
-            onClick={() => handlerDeleteCustomFlight()}
+            onClick={() => onDeleteFlight(+item.id)}
             style={{ marginLeft: 0 }}
             aria-label="delete"
             size="small"

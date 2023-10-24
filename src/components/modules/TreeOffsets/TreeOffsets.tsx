@@ -1,14 +1,14 @@
-import {useContext} from "react";
-import { MyGlobalContext } from "../../base";
+import {useContext} from 'react';
+import { MyGlobalContext } from '../../base';
 
-import "./TreeOffsets.scss";
+import './TreeOffsets.scss';
 
 type TreeOffsetsProps = {
-    carbon: number
+  carbon: number
 }
 
 export const TreeOffsets = ({carbon}: TreeOffsetsProps) => {
-    const {weight} = useContext(MyGlobalContext)
+  const { weight } = useContext(MyGlobalContext);
   
   return (
     <div className="tree-offsets">

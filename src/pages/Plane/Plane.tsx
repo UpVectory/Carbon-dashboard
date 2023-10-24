@@ -29,11 +29,31 @@ type NewAirportProps = {
     setCustomFlights: (c: Flights[]) => void,
 }
 
+
+
 export const Plane = () => {
-  const {length, weight, carbonFl, flightBarChartArr} = useContext(MyGlobalContext)
-  const [flights, setFlights] = useState<Flights[]>(data.flights)
+  const {
+    length,
+    weight,
+    carbonFl,
+    setCarbonFl,
+    flightBarChartArr,
+    setFlightBarChartArr,
+  } = useContext(MyGlobalContext)
+  const [flights, setFlights] = useState<Flights[]>(data.flights);
   const [qtyAir, setQtyAir] = useState<number>(0)
-  const [customFlights, setCustomFlights] = useState<Flights[]>([])
+  const [customFlights, setCustomFlights] = useState<Flights[]>([]);
+
+  useEffect(() => {
+    setFlights(currentFlights => [
+      ...currentFlights,
+    ].map(flight => ({
+      ...flight,
+      amount: 0,
+    })));
+  }, []);
+
+  
 
   const AddNewHandleClick = () => {
     const newFlight = {
@@ -41,7 +61,7 @@ export const Plane = () => {
       departure: '',
       arrival: '',
       distance: '0',
-      carbon: '0'
+      carbon: '0',
     }
 
     setCustomFlights(currentCustomFlights => [
@@ -52,8 +72,24 @@ export const Plane = () => {
     setQtyAir(qtyAir + 1);
   }
 
+  const deleteFlight = (idx: number) => {
+    setFlights([...flights].filter(flight => +flight.id !== idx));
+    setFlightBarChartArr([...flightBarChartArr].filter(bar => bar.id !== (idx - 1)));
+  }
+
   const refreshCustomHandleClick = () => {
-    setFlights(currentFlights => [...currentFlights].filter(flight => !flight.custom ))
+    setCarbonFl(0);
+    setFlightBarChartArr([...flightBarChartArr].map(flight => {
+      return {
+        ...flight,
+        distance: 0,
+        carbon: 0,
+      }
+    }));
+    setFlights(currentFlights => [...currentFlights].map(flight => ({
+      ...flight,
+      amount: 0,
+    })));
   }
 
   return (
@@ -103,6 +139,7 @@ export const Plane = () => {
                         setFlights={(v) => setFlights(v)}
                         flights={flights}
                         item={flight}
+                        onDeleteFlight={deleteFlight}
                         key={index}
                       />
                     ))}
@@ -164,8 +201,8 @@ const NewAirport = ({
 
   useEffect(() => {
     if (dep && arriv) {
-        const addFlights: Flights[] = Object.assign(flights)
-        const clearCustFl: Flights[] = []
+      const addFlights: Flights[] = Object.assign(flights);
+      const clearCustFl: Flights[] = [];
         addFlights.push(
             {
               id: info.id,
