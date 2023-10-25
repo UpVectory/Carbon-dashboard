@@ -6,20 +6,34 @@ import { Flights } from "../../types";
 import { BarChartType} from "../../components/base/ctxProvider/context";
 import data from '../../data/popular-flights.json'
 import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.svg";
-import { TableScore } from '../../components/modules/TableScore';
+
+import {
+  TableScore,
+  TableScoreCaption,
+  TableScoreContentTable,
+  TableScoreContentTableHead,
+  TableScoreContentTableBody,
+
+} from '../../components/modules/TableScore';
+
 import {
   CustomButtonPrimary,
   CustomButtonSecondary,
 } from '../../components/base/CustomButtons';
 
-import { CustomDropdown } from '../../components/base/CustomDropdown';
+import {
+  Dashboard,
+  DashboardTable,
+  DashboardGraph,
+  DashboarScoreboard,
+} from '../../components/modules/Dashboard';
 
-import './Plane.scss';
+import { CustomDropdown } from '../../components/base/CustomDropdown';
 
 const iataCodeArray: string[] = []
 apiAirports.map((v) => {
-    return iataCodeArray.push(`${v.municipality} ${v.iata_code}`)
-})
+  return iataCodeArray.push(`${v.municipality} ${v.iata_code}`)
+});
 
 type NewAirportProps = {
     info: Flights,
@@ -94,81 +108,81 @@ export const Plane = () => {
 
   return (
     <Layout>
-      <section className="dashboard">
-        <div className="dashboard__container">
-          <div className="dashboard__table dashboard__item">
-            <TableScore>
-              <div className="table-score__wrapper">
-                <div className="table-score__caption">
-                  <h2 className="table-score__caption-title">
-                    Fill up your flights
-                  </h2>
-                  <div className="table-score__actions">
-                    <CustomButtonSecondary
-                      variant="outlined"
-                      onClick={refreshCustomHandleClick}
-                    >
-                      <RefreshIcon />
-                    </CustomButtonSecondary>
+      <Dashboard>
+        <DashboardTable>
+          <TableScore>
+            <TableScoreCaption>
+              <h2>
+                Fill up your flights
+              </h2>
+              <div>
+                <CustomButtonSecondary
+                  variant="outlined"
+                  onClick={refreshCustomHandleClick}
+                >
+                  <RefreshIcon />
+                </CustomButtonSecondary>
 
-                    <CustomButtonPrimary
-                      onClick={AddNewHandleClick}
-                      disabled={customFlights.length > 0 || flights.length >= 15}
-                      variant="outlined"
-                      className="button-primary"
-                    >
-                      Add new
-                    </CustomButtonPrimary>
-
-                  </div>
-                </div>
-                <table className="table-score__table">
-                  <thead className="table-score__head">
-                    <tr className="table-score__row table-score__row--head">
-                      <th>#</th>
-                      <th>Departure</th>
-                      <th>Arrival</th>
-                      <th>Distance, {length}</th>
-                      <th>Amount</th>
-                      <th>Carbon, {weight}</th>
-                    </tr>
-                  </thead>
-                  <tbody className='table-score__body'>
-                    {flights.map((flight, index) => (
-                      <TableRowFlight
-                        flights={flights}
-                        item={flight}
-                        onDeleteFlight={(idx) => deleteFlight(idx)}
-                        key={index}
-                      />
-                    ))}
-                    {customFlights.map((v) => (
-                      <NewAirport
-                        flights={flights}
-                        setFlights={(v) => setFlights(v)}
-                        customFlights={customFlights}
-                        setCustomFlights={(v) => setCustomFlights(v)}
-                        info={v}
-                        key={v.id}
-                      />
-                    ))}
-                  </tbody>
-                </table>
+                <CustomButtonPrimary
+                  onClick={AddNewHandleClick}
+                  disabled={customFlights.length > 0 || flights.length >= 15}
+                  variant="outlined"
+                  className="button-primary"
+                >
+                  Add new
+                </CustomButtonPrimary>
               </div>
-            </TableScore>
-          </div>
+            </TableScoreCaption>
 
-          <div className="dashboard__graph">
-            <BarChart data={flightBarChartArr}/>
-          </div>
+            <TableScoreContentTable>
+              <TableScoreContentTableHead>
+                <tr>
+                  <th>#</th>
+                  <th>Departure</th>
+                  <th>Arrival</th>
+                  <th>Distance, {length}</th>
+                  <th>Amount</th>
+                  <th>Carbon, {weight}</th>
+                </tr>
+              </TableScoreContentTableHead>
 
-          <div className="dashboard__scoreboard">
-            <TreeOffsets carbon={carbonFl} />
-          </div>
-        </div>
-      </section>
+              <TableScoreContentTableBody>
+                {flights.map((flight, index) => (
+                  <TableRowFlight
+                    flights={flights}
+                    item={flight}
+                    onDeleteFlight={(idx) => deleteFlight(idx)}
+                    key={index}
+                  />
+                ))}
+                {customFlights.map((v) => (
+                  <NewAirport
+                    flights={flights}
+                    setFlights={(v) => setFlights(v)}
+                    customFlights={customFlights}
+                    setCustomFlights={(v) => setCustomFlights(v)}
+                    info={v}
+                    key={v.id}
+                  />
+                ))}
+              </TableScoreContentTableBody>
+
+            </TableScoreContentTable>
+          
+          </TableScore>
+        </DashboardTable>
+
+        <DashboardGraph>
+          <BarChart data={flightBarChartArr}/>
+        </DashboardGraph>
+
+        <DashboarScoreboard>
+          <TreeOffsets carbon={carbonFl} />
+        </DashboarScoreboard>
+      </Dashboard>
     </Layout>
   )
+
 }
 
 

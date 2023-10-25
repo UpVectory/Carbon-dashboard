@@ -7,9 +7,9 @@ import { ReactComponent as DeleteIcon } from "../../../assets/close.svg";
 import { Flights } from "../../../types";
 import { CustomNumInput } from "../CustomNumInput";
 
-import "./TableRowFlight.scss";
+import styles from "./TableRowFlight.module.scss";
 
-import { getNumbersWithCommaSeparate } from "../../../utils/utils";
+import { getNumbersWithCommaSeparate } from "../../../utils";
 
 type TableRowProps = {
   item: {
@@ -26,15 +26,15 @@ type TableRowProps = {
 
 const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
   const {
-      length,
-      weight,
-      carbon,
-      setCarbon,
-      setCarbonFl,
-      carbonFl,
-      setFlightBarChartArr,
-      flightBarChartArr
-  } = useContext(MyGlobalContext)
+    length,
+    weight,
+    carbon,
+    setCarbon,
+    setCarbonFl,
+    carbonFl,
+    setFlightBarChartArr,
+    flightBarChartArr
+  } = useContext(MyGlobalContext);
 
   const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id - 1].distance);
 
@@ -76,20 +76,24 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
 
 
   return (
-    <tr className="table-row-flight">
-      <th className="table-row-flight__item table-row-flight__item--head">
+    <tr className={styles.row}>
+      <th>
         {item.id}
       </th>
-      <td className="table-row-flight__item">
+
+      <td>
         {`${departure[0].municipality}  (${item.departure})`}
       </td>
-      <td className="table-row-flight__item">
+
+      <td>
         {`${arrival[0].municipality}  (${item.arrival})`}
       </td>
-      <td className="table-row-flight__item">
+
+      <td>
         {flightDistance}
       </td>
-      <td className="table-row-flight__item">
+
+      <td>
         <CustomNumInput
           id={item.id}
           min={0}
@@ -97,9 +101,9 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
           starFrom={0}
           onChangeValue={(v) => handlerChangeAmountFlight(v)}
         />
-        
       </td>
-      <td className="table-row-flight__item table-row-flight__item--delete">
+
+      <td className={styles.deleteCell}>
         <span>{carbonWeight}</span>
         {item.custom && (
           <IconButton
@@ -107,7 +111,7 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
             style={{ marginLeft: 0 }}
             aria-label="delete"
             size="small"
-            className="table-row-flight__delete"
+            className={styles.deleteButton}
           >
             <DeleteIcon />
           </IconButton>

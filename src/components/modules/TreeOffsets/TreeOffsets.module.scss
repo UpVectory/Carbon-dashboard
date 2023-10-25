@@ -1,0 +1,62 @@
+@import "/src/styles/index";
+
+.treeOffsets{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: $color-white;
+  border-radius: 32px;
+  overflow: auto;
+}
+
+
+.title {
+  font-size: 24px;
+  line-height: 1.35;
+  color: $color-dark;
+  font-weight: 700;
+  text-align: center;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  p {
+    margin: 0;
+    font-size: 60px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: $color-green;
+  }
+}
+
+.image {
+  position: relative;
+  flex: 0 0 55px;
+  max-height: 61px;
+
+  &::after {
+    content: "";
+    display: block;
+    padding: 0 0 100%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.label {
+  font-size: 16px;
+  line-height: 1.375;
+  color: $color-dark;
+  font-weight: 500;
+  text-align: center;
+}

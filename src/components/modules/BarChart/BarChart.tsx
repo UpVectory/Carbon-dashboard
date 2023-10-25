@@ -4,7 +4,9 @@ import { clsx } from 'clsx';
 
 import { BarChartType, MyGlobalContext } from "../../base/ctxProvider/context";
 
-import "./BarChart.scss"; 
+import "./BarChart.module.scss"; 
+
+import styles from "./BarChart.module.scss";
 
 const rangeInervalQty = 8;
 
@@ -16,8 +18,7 @@ export const BarChart = ({ data }: BarChartProps) => {
   const chartRow = useRef<HTMLDivElement | null>(null);
   const [chartRowHeight, setChartRowHeight] = useState<number>(0);
   const { weight } = useContext(MyGlobalContext);
-
-  // get emission in kg
+  console.log(styles)
 
   const dataWorking
     = weight === 'kg'
@@ -53,17 +54,17 @@ export const BarChart = ({ data }: BarChartProps) => {
   }, [])
 
   return (
-    <div className="barchart">
-      <h3 className="barchart__title">
+    <div className={styles.barchart}>
+      <h3 className={styles.title}>
       Your carbon emission per flight
       </h3>
-      <div className="barchart__graph">
-        <div className="barchart__y">
-          <div className="barchart__y-values">
+      <div className={styles.graph}>
+        <div className={styles.y}>
+          <div className={styles.yValues}>
             {chart.map((intervalPoint, index) => (
               <div
                 key={intervalPoint}
-                className="barchart__y-value"
+                className={styles.yValue}
                 style={{
                   order: -index
                 }}
@@ -73,11 +74,11 @@ export const BarChart = ({ data }: BarChartProps) => {
               ))}
           </div>
 
-          <div className="barchart__y-field">
+          <div className={styles.yField}>
             {chart.map((_, index) => (
               <div
                 key={index}
-                className="barchart__y-line"
+                className={styles.yLine}
                 ref={element => {
                   if (index === chart.length - 1) {
                     chartRow.current = element
@@ -85,19 +86,19 @@ export const BarChart = ({ data }: BarChartProps) => {
                 }}
               ></div>
             ))}
-            <div className="barchart__bars">
+            <div className={styles.bars}>
               {dataWorking.map(dataItem => (
                 <li
                   key={dataItem.id}
-                  className="barchart__bar"
+                  className={styles.bar}
                   style={{
                     width: `calc(${100 / data.length}% - 5px)`,
                   }}
                 >
                   <div
                     className={clsx(
-                      'barchart__bar-bg',
-                      dataItem.carbon > 0 && 'active',
+                      styles.barBg,
+                      dataItem.carbon > 0 && styles.barBgActive,
                     )}
                     style={{
                       height: `${Math.floor(dataItem.carbon / maxCarbonEmissionItem.carbon * 100) || 1}%`,
@@ -105,7 +106,7 @@ export const BarChart = ({ data }: BarChartProps) => {
                     }}
                   ></div>
 
-                  <div className="barchart__bar-value">
+                  <div className={styles.barValue}>
                     {dataItem.id < 10
                       ? String(dataItem.id + 1).padStart(2, '0')
                       : dataItem.id + 1
@@ -117,7 +118,7 @@ export const BarChart = ({ data }: BarChartProps) => {
           </div>
         </div>
       </div>
-      <p className="barchart__label">
+      <p className={styles.label}>
         Your carbon emission is {totalCarbonEmission} {weight === 'kg' ? 'kg' : 'lb'}
       </p>
     </div>
