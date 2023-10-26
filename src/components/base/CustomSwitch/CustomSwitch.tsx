@@ -15,12 +15,18 @@ type CustomSwitchProps = {
 export const CustomSwitch = ({label1, label2, value, setValue, type, setGlobalValue}: CustomSwitchProps) => {
     const [active , setActive] = useState(type === label2)
 
+    const handleChange = () => {
+        setValue(!value)
+        setGlobalValue(type === label2 ? label1 : label2)
+        setActive(!active)
+    }
+
     return <div style={{
         position:"relative",
         display:"flex",
         marginBottom: '12px'
     }}>
-        <span className={`${styles.switchText} ${styles.switchTextLeft} ${!active ? styles.active : ''}`}>
+        <span onClick={handleChange} className={`${styles.switchText} ${styles.switchTextLeft} ${!active ? styles.active : ''}`}>
             {label1}</span>
         <Switch
             sx={{
@@ -54,14 +60,10 @@ export const CustomSwitch = ({label1, label2, value, setValue, type, setGlobalVa
                 }
             }}
             checked={value}
-            onChange={({target}) => {
-                setValue(target.checked)
-                setGlobalValue(type === label2 ? label1 : label2)
-                setActive(!active)
-            }}
+            onChange={handleChange}
             inputProps={{'aria-label': 'controlled'}}
         />
-        <span className={`${styles.switchText} ${styles.switchTextRight} ${active ? styles.active : ''}`}>{label2}</span>
+        <span onClick={handleChange} className={`${styles.switchText} ${styles.switchTextRight} ${active ? styles.active : ''}`}>{label2}</span>
     </div>
 
 }
