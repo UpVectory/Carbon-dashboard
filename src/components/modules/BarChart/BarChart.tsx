@@ -1,60 +1,126 @@
-import {BarChartType} from "../../base/ctxProvider/context";
+import React from 'react';
+import { useContext, useEffect, useRef, useState} from 'react';
+import { clsx } from 'clsx';
 
-const chart = [1, 2, 3, 4, 5, 6, 7, 8]
+import { BarChartType, MyGlobalContext } from "../../base/ctxProvider/context";
+
+import "./BarChart.module.scss"; 
+
+import styles from "./BarChart.module.scss";
+
+const rangeInervalQty = 8;
 
 type BarChartProps = {
     data : BarChartType[]
 }
-export const BarChart = ({data}:BarChartProps) => {
 
-    return <div>
-        <div style={{
-            display: "flex",
-            position: "relative",
-            height: '500px',
-            width: '100%',
-            justifyContent: 'space-between',
-            alignItems: 'end',
-            borderBottom: `1px solid #000`,
-            padding: '10px 0 10px 10px ',
-            borderLeft: `1px solid #000`,
-            background:'#FFFFFF'
-        }}>
+export const BarChart = ({ data }: BarChartProps) => {
+  const chartRow = useRef<HTMLDivElement | null>(null);
+  const [chartRowHeight, setChartRowHeight] = useState<number>(0);
+  const { weight } = useContext(MyGlobalContext);
+  console.log(styles)
 
-            {data.map(({id, carbon}, i, arr) => {
-                const maxObj = arr.reduce((prev, cur) => cur?.carbon > prev.carbon ? cur : prev, {carbon: -1})
+  const dataWorking
+    = weight === 'kg'
+      ? [...data]
+      : [...data].map(item => {
+        return {
+          ...item,
+          carbon: item.carbon * 2.20462,
+        }
+      });
 
-                return <>
-                    <div key={i} style={{
-                        textAlign: "center",
-                        display: "flex",
-                        justifyContent: 'center',
-                        alignItems: 'end',
-                        transition: '0.3s',
-                        width: `calc(${100 / data.length}% - 5px)`,
-                        borderRadius: '4px 4px 0 0',
-                        background: '#F7B32B',
-                        height: `${maxObj.carbon > 0 ? carbon / maxObj.carbon * 100 : 0}%`
-                    }}>{id + 1}</div>
+  
+  const maxCarbonEmissionItem
+    = dataWorking.reduce((acc, item) => item.carbon > acc.carbon ? item : acc);
+  
+  const totalCarbonEmission = Math.ceil(dataWorking.reduce((acc, item) => item.carbon + acc, 0));
+  
+  const chart = Array(rangeInervalQty + 1).fill(0).map((_, index) => {
+    const maxCarbonValue = maxCarbonEmissionItem.carbon || 100; // max value will 100 by default
+    const interval = Math.ceil(maxCarbonValue / rangeInervalQty);
 
-                    <div key={`${id}${carbon}${i}`} style={{
-                        position: "absolute",
-                        left: '-45px',
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        alignItems: "center"
-                    }}>
-                        {chart.map((v, index) => <span key={`${v}${index}`} style={{
-                            display: "block", width: '100%',
-                            borderBottom:'1px solid #ECF5ED',marginTop:'-10px'
-                        }}>{Math.floor(maxObj.carbon > 0 ? maxObj.carbon / v : 100 / v)}</span>)}
-                    </div>
-                </>
-            })}
+    if (index === rangeInervalQty) {
+      return Math.ceil(maxCarbonValue);
+    }
+
+    return index * interval;
+  });
+
+  useEffect(() => {
+    if (chartRow.current) {
+      setChartRowHeight(chartRow.current.clientHeight);
+    }
+  }, [])
+
+  return (
+    <div className={styles.barchart}>
+      <h3 className={styles.title}>
+      Your carbon emission per flight
+      </h3>
+      <div className={styles.graph}>
+        <div className={styles.y}>
+          <div className={styles.yValues}>
+            {chart.map((intervalPoint, index) => (
+              <div
+                key={intervalPoint}
+                className={styles.yValue}
+                style={{
+                  order: -index
+                }}
+              >
+                {intervalPoint}
+              </div>
+              ))}
+          </div>
+
+          <div className={styles.yField}>
+            {chart.map((_, index) => (
+              <div
+                key={index}
+                className={styles.yLine}
+                ref={element => {
+                  if (index === chart.length - 1) {
+                    chartRow.current = element
+                  }
+                }}
+              ></div>
+            ))}
+            <div className={styles.bars}>
+              {dataWorking.map(dataItem => (
+                <li
+                  key={dataItem.id}
+                  className={styles.bar}
+                  style={{
+                    width: `calc(${100 / data.length}% - 5px)`,
+                  }}
+                >
+                  <div
+                    className={clsx(
+                      styles.barBg,
+                      dataItem.carbon > 0 && styles.barBgActive,
+                    )}
+                    style={{
+                      height: `${Math.floor(dataItem.carbon / maxCarbonEmissionItem.carbon * 100) || 1}%`,
+                      maxHeight: `calc(100% - ${chartRowHeight}px)`
+                    }}
+                  ></div>
+
+                  <div className={styles.barValue}>
+                    {dataItem.id < 10
+                      ? String(dataItem.id + 1).padStart(2, '0')
+                      : dataItem.id + 1
+                    }
+                  </div>
+                </li>
+              ))}
+            </div>
+          </div>
         </div>
+      </div>
+      <p className={styles.label}>
+        Your carbon emission is {totalCarbonEmission} {weight === 'kg' ? 'kg' : 'lb'}
+      </p>
     </div>
+  )
 }

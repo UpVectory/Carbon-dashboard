@@ -46,8 +46,8 @@ export const Layout = ({children}: LayoutProps) => {
                     type={weight}/>
             </div>
         </Stack>
-        <Stack width={'100%'} height={'100%'} p={'32px'}>
-
+        {/* <Stack width={'100%'} height={'100%'} p={'32px'}> */}
+        <Stack sx={{flex: 1}}>
             {children}
 
         </Stack>
