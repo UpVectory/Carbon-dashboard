@@ -26,6 +26,7 @@ const MemoTableRowCar: React.FC<Props> = ({
 }) => {
   const {
     weight,
+    length,
     carbon,
     setCarbon,
     setCarbonCar,
@@ -103,11 +104,14 @@ const MemoTableRowCar: React.FC<Props> = ({
     setCarbon(totalCarbon);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [distance, fuel]);
-  
 
   const carbonWeight = weight === 'kg'
     ? Math.round((carbonCur * distance))
     : Math.round((carbonCur * 2.20462 * distance));
+  
+  const carDistance = length === 'km'
+    ? getNumbersWithCommaSeparate(Math.ceil(distance))
+    : getNumbersWithCommaSeparate(Math.ceil(distance * 0.621371));
 
   return (
     <tr className={styles.TableRowCar}>
@@ -158,7 +162,7 @@ const MemoTableRowCar: React.FC<Props> = ({
           size="small"
           fullWidth
           placeholder="Enter distance..."
-          value={distance ? getNumbersWithCommaSeparate(distance) : ''}
+          value={distance ? carDistance : ''}
           onChange={handleChangeDistance}
           type="text"
           sx={{
