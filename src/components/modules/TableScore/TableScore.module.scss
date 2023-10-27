@@ -19,10 +19,15 @@
 
   tr {
     display: grid;
+    // grid-template-columns: 
+    //   minmax(40px, 60px)
+    //   repeat(2, minmax(150px, 1fr))
+    //   repeat(3, minmax(75px, 1fr));
+
     grid-template-columns: 
       minmax(40px, 60px)
-      repeat(2, minmax(150px, 1fr))
-      repeat(3, minmax(75px, 1fr));
+      repeat(auto-fit, minmax(100px, 1fr));
+
     justify-items: center;
     align-items: center;
     gap: 9px;
@@ -31,8 +36,10 @@
   th,
   td {
     padding: 0;
+    width: 100%;
     text-align: center;
   }
+
 }
 
 .wrapper {
@@ -77,6 +84,14 @@
     padding: 20px 0;
     border-top: 1px solid $color-light;
     border-bottom: 1px solid $color-light;
+  }
+  
+  th {
+    font-weight: 500;
+  }
+
+  th:last-child {
+    color: $color-dark;
   }
 }
 

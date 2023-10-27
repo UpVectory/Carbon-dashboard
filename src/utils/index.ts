@@ -1,5 +1,10 @@
+// Separate number by comma (thousands)
 export function getNumbersWithCommaSeparate(v: number) {
   return v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function getNumberFromSeparatedByComma(v: string) {
+  return +v.replace(/,/g,'');
 }
 
 //function find key by value

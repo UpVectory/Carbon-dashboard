@@ -104,7 +104,7 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
       </td>
 
       <td className={styles.deleteCell}>
-        <span>{carbonWeight}</span>
+        <span>{getNumbersWithCommaSeparate(carbonWeight)}</span>
         {item.custom && (
           <IconButton
             onClick={() => onDeleteFlight(+item.id)}

@@ -40,5 +40,5 @@ export type Cars =   {
     "id": number,
     "type": string,
     "gasCarbon": number,
-    "dieselCarbon": number
+    "dieselCarbon": number,
 }

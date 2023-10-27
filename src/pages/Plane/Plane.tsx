@@ -151,7 +151,7 @@ export const Plane = () => {
                     </TableScore>
                 </DashboardTable>
                 <DashboardGraph>
-                    <BarChart data={flightBarChartArr}/>
+                  <BarChart data={flightBarChartArr} label={'Your carbon emission per flight'} />
                 </DashboardGraph>
                 <DashboarScoreboard>
                     <TreeOffsets carbon={carbonFl}/>

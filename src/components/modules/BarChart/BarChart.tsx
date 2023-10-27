@@ -11,14 +11,14 @@ import styles from "./BarChart.module.scss";
 const rangeInervalQty = 8;
 
 type BarChartProps = {
-    data : BarChartType[]
+  data: BarChartType[];
+  label?: string;
 }
 
-export const BarChart = ({ data }: BarChartProps) => {
+export const BarChart = ({ data, label }: BarChartProps) => {
   const chartRow = useRef<HTMLDivElement | null>(null);
   const [chartRowHeight, setChartRowHeight] = useState<number>(0);
   const { weight } = useContext(MyGlobalContext);
-  console.log(styles)
 
   const dataWorking
     = weight === 'kg'
@@ -55,15 +55,17 @@ export const BarChart = ({ data }: BarChartProps) => {
 
   return (
     <div className={styles.barchart}>
-      <h3 className={styles.title}>
-      Your carbon emission per flight
-      </h3>
+      {label && (
+        <h3 className={styles.title}>
+          {label}
+        </h3>
+      )}
       <div className={styles.graph}>
         <div className={styles.y}>
           <div className={styles.yValues}>
             {chart.map((intervalPoint, index) => (
               <div
-                key={intervalPoint}
+                key={index}
                 className={styles.yValue}
                 style={{
                   order: -index
