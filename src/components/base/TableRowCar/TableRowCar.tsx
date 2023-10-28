@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
 import { MyGlobalContext } from '../ctxProvider/context';
-import { FormControl, MenuItem, Select, TextField } from '@mui/material';
 
 import {
   getNumbersWithCommaSeparate,
@@ -11,6 +10,8 @@ import { Cars } from '../../../types';
 
 import styles from './TableRowCar.module.scss';
 import { carsIcons } from '../../../assets/car-icons';
+import { CustomTextInput } from '../CustomTextInput';
+import { CustomSelect } from '../CustomSelect';
 
 enum FuelType {
   gas = 'gas',
@@ -40,8 +41,8 @@ const MemoTableRowCar: React.FC<Props> = ({
   const fuelKeys = Object.keys(FuelType).map(key => key as keyof typeof FuelType);
   const carbonCur = fuel === FuelType.gas ? item.gasCarbon : item.dieselCarbon;
 
-  const handleChangeDistance = (v: React.ChangeEvent<HTMLInputElement>) => {
-    const valueDistance = +v.target.value.replace(/\D/g, '');
+  const handleChangeDistance = (v: string) => {
+    const valueDistance = +v.replace(/\D/g, '');
     setDistance(valueDistance);
 
     const newCarsBarChartArr = [...carsBarChartArr].map((car, index, array) => {
@@ -121,67 +122,17 @@ const MemoTableRowCar: React.FC<Props> = ({
         <p>{type}</p>
       </td>
       <td>
-        <FormControl fullWidth size="small">
-          <Select
-            value={fuel}
-            inputProps={{ 'aria-label': 'Without label' }}
-            onChange={e => handleChangeFuel(e.target.value as FuelType)}
-            sx={{
-              color: '#61463A',
-              fontWeight: 500,
-
-              '& fieldset': {
-                border: '1px solid #ECF5ED',
-                borderRadius: '8px',
-                transition: 'all .3s ease',
-              },
-
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#61B766',
-              },
-
-              '& .MuiInputBase-input:hover ~ fieldset': {
-                borderColor: '#61B766',
-              },
-            }}
-          >
-            {fuelKeys.map(keyFuel => (
-              <MenuItem
-                value={keyFuel}
-                key={keyFuel}
-              >
-                {keyFuel}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <CustomSelect
+          selectedValue={fuel}
+          values={fuelKeys}
+          onSelectValue={(fuelType) => handleChangeFuel(fuelType as FuelType)}
+        />
       </td>
       <td>
-        <TextField
-          variant="outlined"
-          size="small"
-          fullWidth
-          placeholder="Enter distance..."
-          value={distance ? carDistance : ''}
-          onChange={handleChangeDistance}
-          type="text"
-          sx={{
-            '& fieldset': {
-              border: '1px solid #ECF5ED',
-              borderRadius: '8px',
-              transition: 'all .3s ease',
-            },
-            '& .MuiInputBase-root': {
-              color: '#61463A',
-            },
-            
-            '& .MuiInputBase-root:hover fieldset': {
-              borderColor: '#61B766',
-            },
-            '& .MuiInputBase-root.Mui-focused fieldset': {
-              borderColor: '#61B766',
-            }
-          }}
+        <CustomTextInput
+          placeholderText='Enter distance...'
+          value={carDistance}
+          onChangeValue={handleChangeDistance}
         />
       </td>
       <td>{getNumbersWithCommaSeparate(carbonWeight)}</td>

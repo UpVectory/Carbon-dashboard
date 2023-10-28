@@ -78,6 +78,7 @@ export const Cars = () => {
           <BarChart
             data={carsBarChartArr}
             label={'Your carbon emission per trips by car'}
+            customBgActive="#F25F5C"
           />
         </DashboardGraph>
         <DashboarScoreboard>

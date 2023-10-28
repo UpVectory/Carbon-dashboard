@@ -10,15 +10,30 @@ import styles from "./BarChart.module.scss";
 
 const rangeInervalQty = 8;
 
+type RGB = `rgb(${number}, ${number}, ${number})`;
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
+type HEX = `#${string}`;
+
+type Color = RGB | RGBA | HEX;
+
 type BarChartProps = {
   data: BarChartType[];
   label?: string;
+  customBgActive?: Color;
 }
 
-export const BarChart = ({ data, label }: BarChartProps) => {
+
+
+export const BarChart = ({
+  data,
+  label,
+  customBgActive,
+}: BarChartProps) => {
   const chartRow = useRef<HTMLDivElement | null>(null);
   const [chartRowHeight, setChartRowHeight] = useState<number>(0);
   const { weight } = useContext(MyGlobalContext);
+
+  const customBgColorActiveBar = customBgActive ? customBgActive : '';
 
   const dataWorking
     = weight === 'kg'
@@ -104,7 +119,8 @@ export const BarChart = ({ data, label }: BarChartProps) => {
                     )}
                     style={{
                       height: `${Math.floor(dataItem.carbon / maxCarbonEmissionItem.carbon * 100) || 1}%`,
-                      maxHeight: `calc(100% - ${chartRowHeight}px)`
+                      maxHeight: `calc(100% - ${chartRowHeight}px)`,
+                      backgroundColor:  dataItem.carbon > 0 ? customBgColorActiveBar : '',
                     }}
                   ></div>
 

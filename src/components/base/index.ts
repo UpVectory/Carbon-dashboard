@@ -5,7 +5,7 @@ import {TableRowCars} from "./TableRowCars";
 import {CtxProvider, MyGlobalContext} from './ctxProvider'
 import {Navigation} from "./Navigation";
 import {CustomSwitch} from './CustomSwitch'
-import {CustomDropdown} from "./CustomDropdown";
+import {CustomAutocomplete} from "./CustomAutocomplete";
 import {CustomNumInput} from "./CustomNumInput";
 import {CustomButtonPrimary, CustomButtonSecondary} from "./CustomButtons";
 
@@ -19,7 +19,7 @@ export {
     MyGlobalContext,
     TableRowCars,
     CustomSwitch,
-    CustomDropdown,
+    CustomAutocomplete,
     CustomNumInput,
     CustomButtonPrimary,
     CustomButtonSecondary
