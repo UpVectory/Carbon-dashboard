@@ -38,7 +38,8 @@ export const CustomNumInput: React.FC<Props> = ({
   }
 
   const hadleChangeValue = (value: number) => {
-    onChangeValue(value)
+    setValue(value);
+    onChangeValue(value);
   }
   
   return (
@@ -112,7 +113,23 @@ export const CustomNumInput: React.FC<Props> = ({
             padding: 0,
             flex: '0 1 24px',
             textAlign: 'center',
+          },
+
+          '& fieldset': {
+            border: '1px solid #ECF5ED',
+            borderRadius: '8px',
+            transition: 'all .3s ease',
+          },
+
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#61B766',
+          },
+
+          '& .MuiInputBase-root.Mui-focused fieldset': {
+            border: '#61B766',
+            borderWidth: '1px',
           }
+
         }}
       />
     </FormControl>

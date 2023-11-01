@@ -1,0 +1,17 @@
+@import "../../../styles/index";
+
+.TableRowCar {
+
+  p {
+    margin: 0;
+  }
+
+  th {
+    color: $color-gray;
+    font-weight: 400;
+  }
+
+  td:last-child {
+    font-weight: 700;
+  }
+}

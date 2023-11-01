@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {CustomDropdown, MyGlobalContext} from "../../base";
+import {CustomAutocomplete, MyGlobalContext} from "../../base";
 import {Flights} from "../../../types";
 import {BarChartType} from "../../base/ctxProvider/context";
 import {apiAirports} from "../../../api";
@@ -83,21 +83,21 @@ export const NewAirport = ({
     );
 
     return (
-        <tr className="table-score__new">
+        <tr>
             <th>{info.id}</th>
-            <td className="table-score__new-select">
-                <CustomDropdown
+            <td>
+                <CustomAutocomplete
                     dataArray={iataCodeArray}
-                    id='combo-box-demo'
+                    id='departureSelect'
                     onSelectValue={onSelectDeparture}
                     label="Departure"
                 />
 
             </td>
-            <td className="table-score__new-select">
-                <CustomDropdown
+            <td>
+                <CustomAutocomplete
                     dataArray={iataCodeArray}
-                    id='combo-box-demo'
+                    id='arrivalSelect'
                     onSelectValue={onSelectArrival}
                     label="Arrival"
                 />

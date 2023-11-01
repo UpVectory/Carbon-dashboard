@@ -8,7 +8,7 @@ type Props = {
   onSelectValue: (value: string) => void;
 };
 
-export const CustomDropdown: React.FC<Props> = ({
+export const CustomAutocomplete: React.FC<Props> = ({
   dataArray,
   id,
   onSelectValue,
@@ -36,6 +36,7 @@ export const CustomDropdown: React.FC<Props> = ({
         <TextField
           {...params}
           label={label}
+          size="small"
           sx={{
             border: '1px solid #ECF5ED',
             borderRadius: '8px',
@@ -43,13 +44,17 @@ export const CustomDropdown: React.FC<Props> = ({
               border: 'none',
             },
             '& label': {
+              padding: '0 5px',
+              fontSize: '14px',
               color: '#61b766',
               backgroundColor: '#fff',
-              padding: '0 5px'
+            },
+            '& .MuiOutlinedInput-root': {
+              padding: 0,
             },
             '& .MuiFormLabel-filled': {
               color: 'rgba(0, 0, 0, 0.6)',
-            }
+            },
           }}
         />
       )}

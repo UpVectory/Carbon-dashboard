@@ -98,13 +98,13 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
           id={item.id}
           min={0}
           max={99}
-          starFrom={0}
+          starFrom={qtyFlights}
           onChangeValue={(v) => handlerChangeAmountFlight(v)}
         />
       </td>
 
       <td className={styles.deleteCell}>
-        <span>{carbonWeight}</span>
+        <span>{getNumbersWithCommaSeparate(carbonWeight)}</span>
         {item.custom && (
           <IconButton
             onClick={() => onDeleteFlight(+item.id)}
