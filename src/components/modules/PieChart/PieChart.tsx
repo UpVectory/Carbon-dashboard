@@ -1,4 +1,4 @@
-import { PieChart as Pie } from "@mui/x-charts";
+import { PieChart as Pie, pieArcLabelClasses } from "@mui/x-charts";
 import React, { useContext } from "react";
 import { MyGlobalContext } from "../../base";
 
@@ -7,8 +7,14 @@ import styles from './PieChart.module.scss';
 export const PieChart = () => {
   const { carbon, carbonFl, carbonCar } = useContext(MyGlobalContext);
 
-  const getPercentage = (val: number) => {
-    return Math.round(val / carbon * 100);
+  const getPercentageString = (val: number): string => {
+    const percent = Math.round(val / carbon * 100);
+    
+    if (isFinite(percent)) {
+      return `${percent}%`;
+    }
+
+    return '';
   }
 
   return (
@@ -17,7 +23,7 @@ export const PieChart = () => {
       <Pie
         series={[
           {
-            arcLabel: (item) => `${getPercentage(item.value)}%`,
+            arcLabel: (item) => getPercentageString(item.value),
             arcLabelMinAngle: 1,
             data: [
               { id: 0, value: carbonFl, label: 'Flights', color: '#F7B32B' },
@@ -43,7 +49,14 @@ export const PieChart = () => {
             },
           },
         }}
-
+        sx={{
+          [`& .${pieArcLabelClasses.root}`]: {
+            fontSize: 24,
+            fill: 'white',
+            fontWeight: 'bold',
+          },
+        }}
+        
         margin={{ right: 5 }}
       />
     </div>
