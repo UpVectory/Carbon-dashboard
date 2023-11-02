@@ -1,0 +1,21 @@
+@import '../../../styles/index'; 
+
+.piechart {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white;
+  padding: 20px 20px 40px;
+  border-radius: 32px;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    color: $color-dark;
+    line-height: 1.375;
+  }
+
+  & > div {
+    align-self: center;
+  }
+}

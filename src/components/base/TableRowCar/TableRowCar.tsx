@@ -29,6 +29,7 @@ const MemoTableRowCar: React.FC<Props> = ({
     weight,
     length,
     carbon,
+    carbonCar,
     setCarbon,
     setCarbonCar,
     setCarsBarChartArr,
@@ -100,9 +101,23 @@ const MemoTableRowCar: React.FC<Props> = ({
 
   useEffect(() => {
     const totalCarbonCars = carsBarChartArr.reduce((total, item) => total + item.carbon, 0);
-    const totalCarbon = carbon + totalCarbonCars;
+    // const totalCarbon = totalCarbonCars === carbonCar ? carbon : carbon + totalCarbonCars;
+    let totalCarbon = carbon;
+    if (totalCarbonCars === carbonCar) {
+      setCarbon(totalCarbon);
+    }
+
+    if (totalCarbonCars > carbonCar) {
+      setCarbon(carbon + (totalCarbonCars - carbonCar));
+    }
+
+    if (totalCarbonCars < carbonCar) {
+      setCarbon(carbon - (carbonCar - totalCarbonCars));
+    }
+
+
     setCarbonCar(totalCarbonCars);
-    setCarbon(totalCarbon);
+    // setCarbon(totalCarbon);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [distance, fuel]);
 

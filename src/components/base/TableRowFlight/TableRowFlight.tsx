@@ -1,6 +1,6 @@
 import React from "react";
 import {useContext, useState} from "react";
-import {BarChartType, MyGlobalContext} from "../ctxProvider/context";
+import {MyGlobalContext} from "../ctxProvider/context";
 import {apiAirports} from '../../../api'
 import { IconButton } from "@mui/material";
 import { ReactComponent as DeleteIcon } from "../../../assets/close.svg";
@@ -39,26 +39,34 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
   const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id - 1].distance);
 
   const handlerChangeAmountFlight = (flights: number) => {
-  
-    if (flights > qtyFlights) {
-      setCarbonFl(carbonFl + (parseInt(item.carbon)));
-      setCarbon(carbon + (parseInt(item.carbon)));
-    }
-
-    if (flights < qtyFlights) {
-      setCarbonFl(carbonFl - (parseInt(item.carbon)));
-      setCarbon(carbon - (parseInt(item.carbon)));
-    }
-
-    setQtyFlights(flights);
-
-    let newFlightBarChartArr: BarChartType[] = Object.assign(flightBarChartArr);
-    newFlightBarChartArr.forEach((value, index, array) => {
-      if (`${value.id + 1}` === item.id) {
-        array[index].carbon = +item.carbon * flights;
-        array[index].distance = flights;
+    const newFlightBarChartArr = [...flightBarChartArr].map(flight => {
+      if (`${flight.id + 1}` === item.id) {
+        return {
+          ...flight,
+          carbon: +item.carbon * flights,
+          distance: flights,
+        }
       }
+
+      return flight;
     });
+
+    const carbonFlightsNew = newFlightBarChartArr.reduce((acc, item) => acc + item.carbon, 0);
+
+    if (carbonFlightsNew === carbonFl) {
+      setCarbon(carbon);
+    }
+
+    if (carbonFlightsNew > carbonFl) {
+      setCarbon(carbon + (carbonFlightsNew - carbonFl));
+    }
+
+    if (carbonFlightsNew < carbonFl) {
+      setCarbon(carbon - (carbonFl - carbonFlightsNew));
+    }
+
+    setCarbonFl(carbonFlightsNew);
+    setQtyFlights(flights);
 
     setFlightBarChartArr(newFlightBarChartArr);
   }

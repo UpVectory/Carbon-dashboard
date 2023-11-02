@@ -19,10 +19,6 @@
 
   tr {
     display: grid;
-    // grid-template-columns: 
-    //   minmax(40px, 60px)
-    //   repeat(2, minmax(150px, 1fr))
-    //   repeat(3, minmax(75px, 1fr));
 
     grid-template-columns: 
       minmax(40px, 60px)
@@ -56,6 +52,7 @@
   align-items: center;
 
   h2 {
+    margin: 0;
     font-size: 24px;
     color: $color-dark;
     line-height: 1.375;
