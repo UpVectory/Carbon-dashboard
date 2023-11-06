@@ -2,50 +2,52 @@ import React, {useContext} from "react";
 import {MyGlobalContext} from "../../base";
 import house from "../../../assets/house.png";
 import anchor from "../../../assets/anchor.png";
-import {findKeyByValue, getWeight} from "../../../utils";
+import {findKeyByValue, getWeight, getNumbersWithCommaSeparate} from "../../../utils";
+
+import styles from "./ComparativeInfo.module.scss";
 
 const items = {
     anchor: 11500,
     house: 156000,
 }
 
+
 export const ComparativeInfo = () => {
-    const {carbon, weight} = useContext(MyGlobalContext)
-    const img = carbon > 100000 ? house : anchor
-    const currentItem = carbon > 100000 ? items.house : items.anchor
-    const currentRate = carbon / currentItem * 100
-    return <div>
-        <h2>Your carbon emissions in {weight}</h2>
-        <div style={{display: 'flex', justifyContent: "center", alignItems: "center", width: '100%'}}>
-            <div style={{
-                position: 'relative',
-                background: '#fff',
+  const {carbon, weight} = useContext(MyGlobalContext);
+  const img = carbon > 100000 ? house : anchor;
+  const currentItem = carbon > 100000 ? items.house : items.anchor;
+  const currentRate = carbon / currentItem * 100;
+  const totalCarbonEmission = +getWeight(weight, carbon);
+  
+  const fillBgHeight = currentRate > 100
+    ? currentRate - Math.floor(currentRate / 100) * 100
+    : currentRate;
 
-            }}>
-                <img src={img} alt="anchor" style={{
-                    position: "relative", display: "block", width: '100%', height: '100%', zIndex: 2
-                }}/>
-                <div style={{
-                    position: "absolute",
-                    background: "rgba(97, 183, 102, .6)",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: 1,
-                    height: `${currentRate < 100 ? currentRate : 100}%`
-                }}/>
+  return (
+    <div className={styles.comparativeInfo}>
+      <h3 className={styles.title}>Your carbon emissionss in {weight}</h3>
+      <div className={styles.main}>
+        <div className={styles.image}>
+          <img
+            src={img}
+            alt="Anchor"
+          />
+          <div
+            className={styles.imageBg}
+            style={{
+              height: `${fillBgHeight}%`,
+            }}
+          ></div>
+        </div>
+        <p>{carbon > currentItem ? `x${Math.floor(currentRate / 100)}` : ''}</p>
+      </div>
+      <p className={styles.label}>
+        Your carbon emission is {getNumbersWithCommaSeparate(Math.ceil(totalCarbonEmission))} {weight}
+      </p>
 
-            </div>
-            <div style={{
-                color: '#61B766',
-                fontSize: '60px',
-                fontWeight: 700,
-            }}>{carbon > currentItem ? `x${(currentRate / 100).toFixed()}` : ''}
-            </div>
-        </div>
-        <div style={{textAlign: "center"}}>
-            <p>Your carbon emission is {getWeight(weight, carbon)} {weight}</p>
-            <p>1 {findKeyByValue(items, currentItem)} ≈ {getWeight(weight, currentItem)} {weight}</p>
-        </div>
+      <p className={styles.currency}>
+        1 {findKeyByValue(items, currentItem)} ≈ {getNumbersWithCommaSeparate(+getWeight(weight, currentItem))} {weight}
+      </p>
     </div>
+  )
 }

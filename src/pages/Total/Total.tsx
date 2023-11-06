@@ -13,19 +13,21 @@ import {
 
 
 export const Total = () => {
-    const {carbon} = useContext(MyGlobalContext)
+  const { carbon } = useContext(MyGlobalContext);
 
-    return <Layout>
-        <Dashboard>
-            <DashboardTable>
-                <PieChart/>
-            </DashboardTable>
-            <DashboardGraph>
-                <ComparativeInfo/>
-            </DashboardGraph>
-            <DashboarScoreboard>
-                <TreeOffsets carbon={carbon}/>
-            </DashboarScoreboard>
-        </Dashboard>
+  return (
+    <Layout>
+      <Dashboard>
+        <DashboardTable>
+          <PieChart/>
+        </DashboardTable>
+        <DashboardGraph>
+          <ComparativeInfo/>
+        </DashboardGraph>
+        <DashboarScoreboard>
+          <TreeOffsets carbon={carbon}/>
+        </DashboarScoreboard>
+      </Dashboard>
     </Layout>
+  )
 }

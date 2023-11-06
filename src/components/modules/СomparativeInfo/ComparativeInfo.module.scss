@@ -1,0 +1,72 @@
+@import '../../../styles/index';
+
+.comparativeInfo {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white;
+  border-radius: 32px;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.375;
+    color: $color-dark;
+    text-align: center;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.375;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  gap: 24px;
+
+  p {
+    font-size: 60px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: $color-green;
+  }
+}
+
+.image {
+  position: relative;
+  width: 40%;
+  background-color: $color-white;
+
+  img {
+    position: relative;
+    display: block;
+    z-index: 2;
+  }
+}
+
+.imageBg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: $color-green-light;
+}
+
+.label {
+  margin: 0 0 12px !important;
+  font-weight: 700;
+}
+
+.currency {
+  font-weight: 500;
+}
