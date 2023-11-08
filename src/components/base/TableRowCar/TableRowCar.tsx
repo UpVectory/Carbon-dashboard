@@ -48,7 +48,7 @@ const MemoTableRowCar: React.FC<Props> = ({
 
   useEffect(() => {
     setDistance(carsBarChartArr[+item.id - 1].distance)
-  }, [carsBarChartArr])
+  }, [carsBarChartArr, item.id])
 
   const handleChangeDistance = (v: string) => {
     const valueDistance = +v.replace(/\D/g, '');
