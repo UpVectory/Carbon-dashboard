@@ -24,11 +24,12 @@ import {Flights} from "../../types";
 import data from '../../data/popular-flights.json'
 import {ReactComponent as RefreshIcon} from "../../assets/refresh-outline_1.svg";
 
-
 export const Plane = () => {
     const {
         length,
         weight,
+        carbon,
+        setCarbon,
         carbonFl,
         setCarbonFl,
         flightBarChartArr,
@@ -37,6 +38,7 @@ export const Plane = () => {
     const [flights, setFlights] = useState<Flights[]>(data.flights);
     const [qtyAir, setQtyAir] = useState<number>(0)
     const [customFlights, setCustomFlights] = useState<Flights[]>([]);
+    const [isRefresh, setIsRefresh] = useState<boolean>(false);
 
     useEffect(() => {
         setFlights(currentFlights => [
@@ -71,18 +73,25 @@ export const Plane = () => {
     }
 
     const refreshCustomHandleClick = () => {
+        setIsRefresh(!isRefresh);
+        setCarbon(carbon-carbonFl);
         setCarbonFl(0);
-        setFlightBarChartArr([...flightBarChartArr].map(flight => {
+        setFlightBarChartArr([...flightBarChartArr]
+            .filter(flight => flight.id <= 9)
+            .map(flight => {
             return {
                 ...flight,
                 distance: 0,
                 carbon: 0,
             }
         }));
-        setFlights(currentFlights => [...currentFlights].map(flight => ({
-            ...flight,
-            amount: 0,
-        })));
+        setFlights(currentFlights => [...currentFlights]
+            .map(flight => ({
+                ...flight,
+                amount: 0,
+            }))
+            .filter(flight=>!flight.custom)
+        );
     }
 
     return (
@@ -130,6 +139,7 @@ export const Plane = () => {
                                     <TableRowFlight
                                         flights={flights}
                                         item={flight}
+                                        isRefresh={isRefresh}
                                         onDeleteFlight={(idx) => deleteFlight(idx)}
                                         key={index}
                                     />

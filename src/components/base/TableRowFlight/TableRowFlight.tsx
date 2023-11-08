@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useContext, useState} from "react";
-import {MyGlobalContext} from "../ctxProvider/context";
+import {MyGlobalContext} from "../ctxProvider";
 import {apiAirports} from '../../../api'
 import { IconButton } from "@mui/material";
 import { ReactComponent as DeleteIcon } from "../../../assets/close.svg";
@@ -22,9 +22,10 @@ type TableRowProps = {
   };
   flights: Flights[];
   onDeleteFlight: (idx: number) => void;
+  isRefresh: boolean;
 }
 
-const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
+const MemoTableRowFlight = ({item, onDeleteFlight, isRefresh}: TableRowProps) => {
   const {
     length,
     weight,
@@ -37,6 +38,10 @@ const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
   } = useContext(MyGlobalContext);
 
   const [qtyFlights, setQtyFlights] = useState<number>(flightBarChartArr[+item.id - 1].distance);
+
+  useEffect(() => {
+    setQtyFlights(flightBarChartArr[+item.id - 1].distance);
+  }, [flightBarChartArr]);
 
   const handlerChangeAmountFlight = (flights: number) => {
     const newFlightBarChartArr = [...flightBarChartArr].map(flight => {

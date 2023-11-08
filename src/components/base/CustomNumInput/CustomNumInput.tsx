@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FormControl,
   IconButton, 
@@ -26,6 +26,10 @@ export const CustomNumInput: React.FC<Props> = ({
   onChangeValue,
 }) => {
   const [value, setValue] = useState<number>(starFrom);
+
+  useEffect(() => {
+    setValue(starFrom);
+  }, [starFrom]);
 
   const handleAdd = () => {
     setValue(currentValue => currentValue + 1);
