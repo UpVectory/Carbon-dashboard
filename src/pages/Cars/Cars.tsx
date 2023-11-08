@@ -28,11 +28,27 @@ export const Cars = () => {
   const {
     length,
     weight,
+      carbon,
+      setCarbon,
     carbonCar,
-    carsBarChartArr
+    setCarbonCar,
+    carsBarChartArr,
+      setCarsBarChartArr,
   } =
   useContext(MyGlobalContext);
   const { cars } = data;
+
+  const handleRefresh = () => {
+    setCarbon(carbon- carbonCar)
+    setCarbonCar(0)
+    setCarsBarChartArr(carsBarChartArr.map(car => {
+      return {
+        ...car,
+        carbon: 0,
+        distance: 0,
+      }
+    }))
+  }
 
   return (
     <Layout>
@@ -44,7 +60,7 @@ export const Cars = () => {
               <div>
                 <CustomButtonSecondary
                   variant="outlined"
-                  onClick={() => {}}
+                  onClick={handleRefresh}
                 >
                   <RefreshIcon />
                 </CustomButtonSecondary>

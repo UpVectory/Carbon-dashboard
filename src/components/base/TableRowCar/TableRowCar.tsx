@@ -41,6 +41,14 @@ const MemoTableRowCar: React.FC<Props> = ({
   const [distance, setDistance] = useState<number>(carsBarChartArr[+item.id - 1].distance);
   const fuelKeys = Object.keys(FuelType).map(key => key as keyof typeof FuelType);
   const carbonCur = fuel === FuelType.gas ? item.gasCarbon : item.dieselCarbon;
+  const carDistance = getNumbersWithCommaSeparate(Math.ceil(distance))
+  const carbonWeight = weight === 'kg'
+      ? Math.round((carbonCur * +getWeightByLength(length, distance)))
+      : Math.round((carbonCur * 2.20462 * +getWeightByLength(length, distance)));
+
+  useEffect(() => {
+    setDistance(carsBarChartArr[+item.id - 1].distance)
+  }, [carsBarChartArr])
 
   const handleChangeDistance = (v: string) => {
     const valueDistance = +v.replace(/\D/g, '');
@@ -115,12 +123,6 @@ const MemoTableRowCar: React.FC<Props> = ({
     setCarbonCar(totalCarbonCars);
 
   }, [distance, fuel, carbonCar, carbon, carsBarChartArr, length, setCarbon, setCarbonCar, setCarsBarChartArr]);
-
-  const carbonWeight = weight === 'kg'
-    ? Math.round((carbonCur * +getWeightByLength(length, distance)))
-    : Math.round((carbonCur * 2.20462 * +getWeightByLength(length, distance)));
-  
-  const carDistance = getNumbersWithCommaSeparate(Math.ceil(distance))
 
   return (
     <tr className={styles.TableRowCar}>
