@@ -24,3 +24,8 @@ export function getLength(length: string, distance: number) {
   const resp = length === 'km' ? distance : distance * 0.621371
   return resp.toFixed(2)
 }
+
+export function getWeightByLength(length: string, distance: number) {
+  const resp = length === 'km' ? distance : distance / 0.621371
+  return resp.toFixed(2)
+}

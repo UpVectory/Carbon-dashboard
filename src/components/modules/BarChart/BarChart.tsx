@@ -1,12 +1,12 @@
 import React from 'react';
 import { useContext, useEffect, useRef, useState} from 'react';
 import { clsx } from 'clsx';
-
 import { BarChartType, MyGlobalContext } from "../../base/ctxProvider/context";
-
-import "./BarChart.module.scss"; 
-
+import "./BarChart.module.scss";
 import styles from "./BarChart.module.scss";
+import {useLocation} from "react-router-dom";
+import {getWeightByLength} from "../../../utils";
+import {routesPath} from "../../../routes";
 
 const rangeInervalQty = 8;
 
@@ -31,8 +31,8 @@ export const BarChart = ({
 }: BarChartProps) => {
   const chartRow = useRef<HTMLDivElement | null>(null);
   const [chartRowHeight, setChartRowHeight] = useState<number>(0);
-  const { weight } = useContext(MyGlobalContext);
-
+  const { weight, length } = useContext(MyGlobalContext);
+  const pathname = useLocation().pathname
   const customBgColorActiveBar = customBgActive ? customBgActive : '';
 
   const dataWorking
@@ -137,7 +137,7 @@ export const BarChart = ({
         </div>
       </div>
       <p className={styles.label}>
-        Your carbon emission is {totalCarbonEmission} {weight === 'kg' ? 'kg' : 'lb'}
+        Your carbon emission is {pathname === routesPath.cars ? getWeightByLength(length, totalCarbonEmission) : totalCarbonEmission} {weight === 'kg' ? 'kg' : 'lb'}
       </p>
     </div>
   )

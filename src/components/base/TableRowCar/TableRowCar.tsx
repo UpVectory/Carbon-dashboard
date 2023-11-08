@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import { MyGlobalContext } from '../ctxProvider/context';
+import { MyGlobalContext } from '../ctxProvider';
 
 import {
-  getNumbersWithCommaSeparate,
+  getNumbersWithCommaSeparate, getWeightByLength,
 } from '../../../utils';
 
 import { Cars } from '../../../types';
@@ -27,8 +27,8 @@ const MemoTableRowCar: React.FC<Props> = ({
 }) => {
   const {
     weight,
-    length,
     carbon,
+      length,
     carbonCar,
     setCarbon,
     setCarbonCar,
@@ -64,7 +64,7 @@ const MemoTableRowCar: React.FC<Props> = ({
 
     const newCarsBarChartArr = [...carsBarChartArr].map((car, index, array) => {
       if (car.id + 1 === item.id) {
-        array[index].carbon = carbonCoef * distance;
+        array[index].carbon = carbonCoef * +getWeightByLength(length, distance);
       }
 
       return car;
@@ -98,13 +98,10 @@ const MemoTableRowCar: React.FC<Props> = ({
 
   const TypeIcon = findIcon(type);
 
-
   useEffect(() => {
-    const totalCarbonCars = carsBarChartArr.reduce((total, item) => total + item.carbon, 0);
-    // const totalCarbon = totalCarbonCars === carbonCar ? carbon : carbon + totalCarbonCars;
-    let totalCarbon = carbon;
+    const totalCarbonCars = +getWeightByLength(length ,carsBarChartArr.reduce((total, item) => total + item.carbon, 0))
     if (totalCarbonCars === carbonCar) {
-      setCarbon(totalCarbon);
+      return
     }
 
     if (totalCarbonCars > carbonCar) {
@@ -115,19 +112,15 @@ const MemoTableRowCar: React.FC<Props> = ({
       setCarbon(carbon - (carbonCar - totalCarbonCars));
     }
 
-
     setCarbonCar(totalCarbonCars);
-    // setCarbon(totalCarbon);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [distance, fuel]);
+
+  }, [distance, fuel, carbonCar, carbon, carsBarChartArr, length, setCarbon, setCarbonCar, setCarsBarChartArr]);
 
   const carbonWeight = weight === 'kg'
-    ? Math.round((carbonCur * distance))
-    : Math.round((carbonCur * 2.20462 * distance));
+    ? Math.round((carbonCur * +getWeightByLength(length, distance)))
+    : Math.round((carbonCur * 2.20462 * +getWeightByLength(length, distance)));
   
-  const carDistance = length === 'km'
-    ? getNumbersWithCommaSeparate(Math.ceil(distance))
-    : getNumbersWithCommaSeparate(Math.ceil(distance * 0.621371));
+  const carDistance = getNumbersWithCommaSeparate(Math.ceil(distance))
 
   return (
     <tr className={styles.TableRowCar}>
