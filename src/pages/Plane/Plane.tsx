@@ -38,7 +38,6 @@ export const Plane = () => {
     const [flights, setFlights] = useState<Flights[]>(data.flights);
     const [qtyAir, setQtyAir] = useState<number>(0)
     const [customFlights, setCustomFlights] = useState<Flights[]>([]);
-    const [isRefresh, setIsRefresh] = useState<boolean>(false);
 
     useEffect(() => {
         setFlights(currentFlights => [
@@ -73,7 +72,6 @@ export const Plane = () => {
     }
 
     const refreshCustomHandleClick = () => {
-        setIsRefresh(!isRefresh);
         setCarbon(carbon-carbonFl);
         setCarbonFl(0);
         setFlightBarChartArr([...flightBarChartArr]
@@ -139,7 +137,6 @@ export const Plane = () => {
                                     <TableRowFlight
                                         flights={flights}
                                         item={flight}
-                                        isRefresh={isRefresh}
                                         onDeleteFlight={(idx) => deleteFlight(idx)}
                                         key={index}
                                     />

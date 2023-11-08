@@ -22,10 +22,9 @@ type TableRowProps = {
   };
   flights: Flights[];
   onDeleteFlight: (idx: number) => void;
-  isRefresh: boolean;
 }
 
-const MemoTableRowFlight = ({item, onDeleteFlight, isRefresh}: TableRowProps) => {
+const MemoTableRowFlight = ({item, onDeleteFlight}: TableRowProps) => {
   const {
     length,
     weight,
@@ -41,7 +40,7 @@ const MemoTableRowFlight = ({item, onDeleteFlight, isRefresh}: TableRowProps) =>
 
   useEffect(() => {
     setQtyFlights(flightBarChartArr[+item.id - 1].distance);
-  }, [flightBarChartArr]);
+  }, [flightBarChartArr, item.id]);
 
   const handlerChangeAmountFlight = (flights: number) => {
     const newFlightBarChartArr = [...flightBarChartArr].map(flight => {
