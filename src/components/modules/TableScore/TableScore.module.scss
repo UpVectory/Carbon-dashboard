@@ -21,7 +21,7 @@
     display: grid;
 
     grid-template-columns: 
-      minmax(40px, 60px)
+      minmax(30px, 35px)
       repeat(auto-fit, minmax(100px, 1fr));
 
     justify-items: center;
@@ -36,6 +36,23 @@
     text-align: center;
   }
 
+  &FlightTable {
+    grid-template-columns: 
+      minmax(30px, 35px)
+      repeat(2, minmax(130px, 1fr))
+      repeat(2, minmax(100px, 110px))
+      minmax(100px, 1fr)
+  }
+
+  &CarTable {
+    grid-template-columns: 
+      minmax(30px, 35px)
+      repeat(3, minmax(170px, 1fr))
+      minmax(100px, 105px) !important;
+
+    gap: 20px !important;
+  }
+
 }
 
 .wrapper {
@@ -46,7 +63,7 @@
 }
 
 .caption {
-  padding: 20px;
+  padding: 0 20px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

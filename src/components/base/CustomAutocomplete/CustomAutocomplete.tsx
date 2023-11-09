@@ -35,19 +35,24 @@ export const CustomAutocomplete: React.FC<Props> = ({
       renderInput={(params) => (
         <TextField
           {...params}
-          label={label}
+          placeholder={label}
           size="small"
+          hiddenLabel
           sx={{
             border: '1px solid #ECF5ED',
             borderRadius: '8px',
             '& fieldset': {
               border: 'none',
             },
-            '& label': {
+            '& input': {
               padding: '0 5px',
               fontSize: '14px',
-              color: '#61b766',
+              color: '#61463a',
               backgroundColor: '#fff',
+
+              '&::placeholder': {
+                color: '#61b766',
+              }
             },
             '& .MuiOutlinedInput-root': {
               padding: 0,

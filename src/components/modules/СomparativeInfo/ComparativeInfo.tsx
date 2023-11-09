@@ -25,7 +25,7 @@ export const ComparativeInfo = () => {
 
   return (
     <div className={styles.comparativeInfo}>
-      <h3 className={styles.title}>Your carbon emissionss in {weight}</h3>
+      <h3 className={styles.title}>Your carbon emissions in {weight}</h3>
       <div className={styles.main}>
         <div className={styles.image}>
           <img

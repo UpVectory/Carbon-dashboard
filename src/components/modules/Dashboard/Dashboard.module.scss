@@ -1,14 +1,14 @@
 @import '../../../styles/index';
 
 .dashboard {
-  padding: 20px;
+  padding: 32px;
   height: 100%;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 60% minmax(0, 1fr);
-  grid-template-rows: 60% minmax(0, 1fr);
+  grid-template-columns: 57.7% minmax(0, 1fr);
+  grid-template-rows: 58.4% minmax(0, 1fr);
   grid-template-areas: 
     "dash-table dash-graph"
     "dash-table dash-score";

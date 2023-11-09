@@ -3,7 +3,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -14,7 +14,8 @@
     left: 12px
   }
   &Right {
-    right: 12px
+    left: calc(100% - 21px);
+    transform: translate(-50%, -50%);
   }
 }
 
