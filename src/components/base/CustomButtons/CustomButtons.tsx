@@ -7,7 +7,6 @@ export const CustomButtonPrimary = styled(Button)<ButtonProps>(() => ({
   backgroundColor: '#61b766',
   fontFamily: 'inherit',
   fontSize: 16,
-  lineHeight: 1.25,
   fontWeight: 500,
   textTransform: 'none',
   border: '1px solid #61b766',
