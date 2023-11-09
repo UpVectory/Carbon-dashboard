@@ -129,7 +129,7 @@ const MemoTableRowCar: React.FC<Props> = ({
       <th>{id}</th>
       <td>
         <TypeIcon />
-        <p>{type}</p>
+        <p className={styles.TableRowCarIconLabel}>{type}</p>
       </td>
       <td>
         <CustomSelect

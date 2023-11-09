@@ -17,10 +17,17 @@
   p {
     margin: 0;
     color: $color-dark;
+    line-height: 1.355;
   }
 
   p:last-child {
     margin: 0 0 40px 0;
+  }
+
+  a {
+    color: $color-dark;
+    font-size: 16px;
+    line-height: 1.355;
   }
 }
 

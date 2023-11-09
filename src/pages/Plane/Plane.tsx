@@ -38,6 +38,15 @@ export const Plane = () => {
     const [flights, setFlights] = useState<Flights[]>(data.flights);
     const [qtyAir, setQtyAir] = useState<number>(0)
     const [customFlights, setCustomFlights] = useState<Flights[]>([]);
+    
+  const columnWidthStyle = {
+    gridTemplateColumns: `
+    minmax(30px, 35px)
+    repeat(2, minmax(130px, 1fr))
+    repeat(2, minmax(100px, 130px))
+    minmax(100px, max-content)`
+  }
+
 
     useEffect(() => {
         setFlights(currentFlights => [
@@ -122,7 +131,7 @@ export const Plane = () => {
 
                         <TableScoreContentTable>
                             <TableScoreContentTableHead>
-                                <tr>
+                              <tr style={{...columnWidthStyle}}>
                                     <th>#</th>
                                     <th>Departure</th>
                                     <th>Arrival</th>
@@ -139,17 +148,19 @@ export const Plane = () => {
                                         item={flight}
                                         onDeleteFlight={(idx) => deleteFlight(idx)}
                                         key={index}
+                                        
                                     />
                                 ))}
                                 {customFlights.map((v) => (
                                     <NewAirport
-                                        flights={flights}
-                                        setFlights={(v) => setFlights(v)}
-                                        customFlights={customFlights}
-                                        setCustomFlights={(v) => setCustomFlights(v)}
-                                        info={v}
-                                        key={v.id}
-                                    />
+                                    flights={flights}
+                                    setFlights={(v) => setFlights(v)}
+                                    customFlights={customFlights}
+                                    setCustomFlights={(v) => setCustomFlights(v)}
+                                    info={v}
+                                    key={v.id}
+                                    style={{...columnWidthStyle}}
+                                  />
                                 ))}
                             </TableScoreContentTableBody>
 

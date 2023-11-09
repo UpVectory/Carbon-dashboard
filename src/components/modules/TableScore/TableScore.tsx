@@ -4,13 +4,16 @@ import styles from './TableScore.module.scss';
 
 type Props = {
   children: React.ReactNode;
+  style?: React.CSSProperties;
 };
+
 
 export const TableScore: React.FC<Props> = ({
   children,
+  style,
 }) => {
   return (
-    <div className={styles.tableScore}>
+    <div style={{ ...style}} className={styles.tableScore}>
       <div className={styles.wrapper}>
         {children}
       </div>

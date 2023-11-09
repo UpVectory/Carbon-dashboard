@@ -31,6 +31,7 @@ export const PieChart = () => {
               { id: 2, value: carbon ? 0 : 1, color: '#a0d4a3'},
             ],
             outerRadius: 250,
+            cy: 276,
           },
         ]}
         slotProps={{

@@ -10,7 +10,8 @@ type NewAirportProps = {
     flights: Flights[],
     setFlights: (c: Flights[]) => void,
     customFlights: Flights[],
-    setCustomFlights: (c: Flights[]) => void,
+  setCustomFlights: (c: Flights[]) => void,
+    style?: {},
 }
 
 
@@ -23,7 +24,8 @@ export const NewAirport = ({
                                info,
                                flights,
                                setFlights,
-                               setCustomFlights
+                               setCustomFlights,
+                               style,
                            }: NewAirportProps) => {
     const [dep, setDep] = useState('');
     const [arriv, setArriv] = useState('');
@@ -113,14 +115,14 @@ export const NewAirport = ({
     );
 
     return (
-        <tr>
+        <tr style={{...style}}>
             <th>{info.id}</th>
             <td>
                 <CustomAutocomplete
                     dataArray={iataCodeArray}
                     id='departureSelect'
                     onSelectValue={onSelectDeparture}
-                    label="Departure"
+                    label="Enter airport..."
                 />
 
             </td>
@@ -129,7 +131,7 @@ export const NewAirport = ({
                     dataArray={iataCodeArray}
                     id='arrivalSelect'
                     onSelectValue={onSelectArrival}
-                    label="Arrival"
+                    label="Enter airport..."
                 />
             </td>
             <td>{loading ? 'Loading...' : error ? error.message : 0}</td>

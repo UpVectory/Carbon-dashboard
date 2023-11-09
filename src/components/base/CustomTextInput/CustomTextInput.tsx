@@ -19,7 +19,7 @@ export const CustomTextInput: React.FC<Props> = ({
       fullWidth
       // placeholder="Enter distance..."
       placeholder={placeholderText}
-      value={value ? value : ''}
+      value={value !== '0' ? value : ''}
       onChange={(e) => onChangeValue(e.target.value)}
       type="text"
       sx={{
@@ -29,6 +29,8 @@ export const CustomTextInput: React.FC<Props> = ({
           transition: 'all .3s ease',
         },
         '& .MuiInputBase-root': {
+          fontSize: 14,
+          fontWeight: 500,
           color: '#61463A',
         },
         

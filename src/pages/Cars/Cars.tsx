@@ -38,6 +38,14 @@ export const Cars = () => {
   useContext(MyGlobalContext);
   const { cars } = data;
 
+  const columnWidthStyle = {
+    gridTemplateColumns: `
+      minmax(30px, 35px)
+      minmax(100px, 120px)
+      repeat(2, minmax(130px, 1fr))
+      minmax(100px, 105px)`
+  }
+
   const handleRefresh = () => {
     setCarbon(carbon- carbonCar)
     setCarbonCar(0)
@@ -54,7 +62,11 @@ export const Cars = () => {
     <Layout>
       <Dashboard>
         <DashboardTable>
-          <TableScore>
+          <TableScore
+            style={{
+
+            }}
+          >
             <TableScoreCaption>
               <h2>Fill up your car trips</h2>
               <div>
@@ -70,7 +82,7 @@ export const Cars = () => {
 
             <TableScoreContentTable>
               <TableScoreContentTableHead>
-                <tr>
+                <tr style={{...columnWidthStyle}}>
                   <th>#</th>
                   <th>Type</th>
                   <th>Fuel Type</th>

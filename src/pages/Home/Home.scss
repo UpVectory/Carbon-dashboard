@@ -1,7 +1,7 @@
 @import "../../styles/index";
 
 .home {
-  padding: 20px;
+  padding: 32px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -37,7 +37,7 @@
     position: relative;
     border-radius: 32px;
     overflow: hidden;
-    flex: 0 0 48%;
+    flex: 0 0 46%;
 
     img {
       position: absolute;
