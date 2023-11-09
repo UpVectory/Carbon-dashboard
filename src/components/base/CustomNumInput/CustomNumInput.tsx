@@ -27,6 +27,10 @@ export const CustomNumInput: React.FC<Props> = ({
 }) => {
   const [value, setValue] = useState<number>(starFrom);
 
+  const iconSize = {
+    fontSize: 12,
+  }
+
   useEffect(() => {
     setValue(starFrom);
   }, [starFrom]);
@@ -66,6 +70,9 @@ export const CustomNumInput: React.FC<Props> = ({
               size="small"
               disabled={value <= min}
               sx={{
+                '& svg': {
+                  ...iconSize
+                },
                 '&:disabled': {
                   opacity: '0.6'
                 }
@@ -90,6 +97,9 @@ export const CustomNumInput: React.FC<Props> = ({
               disabled={value >= max}
               onClick={handleAdd}
               sx={{
+                '& svg': {
+                  ...iconSize,
+                },
                 '&:disabled': {
                   opacity: '0.6'
                 }
@@ -111,6 +121,7 @@ export const CustomNumInput: React.FC<Props> = ({
           borderRadius: '8px',
           color: '#61463a',
           fontFamily: 'inherit',
+          fontSize: 14,
           fontWeight: 500,
 
           "& input": {
