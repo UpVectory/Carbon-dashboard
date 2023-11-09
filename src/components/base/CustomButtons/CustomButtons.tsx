@@ -9,6 +9,7 @@ export const CustomButtonPrimary = styled(Button)<ButtonProps>(() => ({
   textTransform: 'none',
   border: '1px solid #61b766',
   borderRadius: '12px',
+  lineHeight:1,
   '&:hover': {
     color: '#61b766',
     borderColor: '#ecf5ed',
