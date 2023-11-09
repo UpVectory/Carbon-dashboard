@@ -6,16 +6,16 @@
   line-height: 1;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   z-index: 111;
   cursor: pointer;
   color: #61B766;
+
   &Left {
-    left: 12px
+    left: 22px
   }
   &Right {
     left: calc(100% - 21px);
-    transform: translate(-50%, -50%);
   }
 }
 

@@ -64,6 +64,7 @@ export const CustomNumInput: React.FC<Props> = ({
         startAdornment={
           <InputAdornment
             position="start"
+            sx={{margin: 0}}
           >
             <IconButton
               aria-label="delete"
@@ -90,7 +91,7 @@ export const CustomNumInput: React.FC<Props> = ({
           </InputAdornment>
         }
         endAdornment={
-          <InputAdornment position="end">
+          <InputAdornment position="end" sx={{margin: 0}}>
             <IconButton
               aria-label="add"
               size="small"
@@ -126,7 +127,7 @@ export const CustomNumInput: React.FC<Props> = ({
 
           "& input": {
             padding: 0,
-            flex: '0 1 24px',
+            flex: '0 1 20px',
             textAlign: 'center',
           },
 

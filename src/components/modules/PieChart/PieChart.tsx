@@ -21,6 +21,9 @@ export const PieChart = () => {
     <div className={styles.piechart}>
       <h2>Your total carbon emission</h2>
       <Pie
+        tooltip={{
+          trigger: 'none',
+        }}
         series={[
           {
             arcLabel: (item) => getPercentageString(item.value),

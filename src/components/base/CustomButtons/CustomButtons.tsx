@@ -2,7 +2,7 @@ import { Button, ButtonProps } from '@mui/material';
 import { styled } from '@mui/system';
 
 export const CustomButtonPrimary = styled(Button)<ButtonProps>(() => ({
-  padding: '12px 24px',
+  padding: '11px 24px',
   color: '#fff',
   backgroundColor: '#61b766',
   fontFamily: 'inherit',
@@ -11,7 +11,7 @@ export const CustomButtonPrimary = styled(Button)<ButtonProps>(() => ({
   textTransform: 'none',
   border: '1px solid #61b766',
   borderRadius: '12px',
-  lineHeight: '1',
+  lineHeight: 1.3625,
   '&:hover': {
     color: '#61b766',
     borderColor: '#ecf5ed',
