@@ -19,6 +19,7 @@ export const CustomSelect: React.FC<Props> = ({
         inputProps={{ 'aria-label': 'Without label' }}
         onChange={e => onSelectValue(e.target.value)}
         sx={{
+            fontFamily: 'Manrope',
           '& .MuiSelect-select': {
             height: '1.4375em !important',
             color: '#61463A',

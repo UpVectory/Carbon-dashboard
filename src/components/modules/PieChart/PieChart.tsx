@@ -17,11 +17,6 @@ export const PieChart = () => {
         return '';
     }
 
-    console.log('carbon: ',carbon)
-    console.log('carbonFl: ',!carbonFl)
-    console.log('carbonCar: ', !carbonCar)
-    console.log(!carbonFl && !carbonCar ? 0 : 1)
-
     return (
         <div className={styles.piechart}>
             <h2>Your total carbon emission</h2>
@@ -66,7 +61,6 @@ export const PieChart = () => {
                             fill: '#61463A',
                             fontWeight: 500,
                             fontFamily: 'inherit',
-
                         },
                     },
                 }}
@@ -83,10 +77,14 @@ export const PieChart = () => {
                     '& .MuiChartsLegend-mark': {
                         ry: 4,
                         rx: 4,
-                    }
-                }}
+                    },
+                    '& .MuiResponsiveChart-container': {
 
+                    },
+
+                }}
                 margin={{right: 5}}
+                height={600}
             />
         </div>
     );
