@@ -119,6 +119,7 @@ export const NewAirport = ({
             <th>{info.id}</th>
             <td>
                 <CustomAutocomplete
+                    shouldFocus
                     dataArray={iataCodeArray}
                     id='departureSelect'
                     onSelectValue={onSelectDeparture}
