@@ -34,7 +34,7 @@ export const CustomAutocomplete: React.FC<Props> = ({
             forcePopupIcon={false}
             renderInput={(params) => (
                 <TextField
-                    inputRef={input => shouldFocus && input && input.focus()}
+                    autoFocus={shouldFocus}
                     {...params}
                     placeholder={label}
                     size="small"
