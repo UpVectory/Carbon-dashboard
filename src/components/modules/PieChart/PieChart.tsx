@@ -17,6 +17,10 @@ export const PieChart = () => {
         return '';
     }
 
+    console.log('carbon: ', carbon)
+    console.log('carbonFl: ', carbonFl)
+    console.log('carbonCar: ', carbonCar)
+
     return (
         <div className={styles.piechart}>
             <h2>Your total carbon emission</h2>
@@ -35,7 +39,7 @@ export const PieChart = () => {
                         },
                         arcLabelMinAngle: 1,
                         data: [
-                            {id: 0, value: carbonFl && carbonCar ? 0 : 1, color: '#a0d4a3'},
+                            {id: 0, value: carbonFl || carbonCar ? 0 : 1, color: '#a0d4a3'},
                             {id: 1, value: carbonFl, label: 'Flights', color: '#F7B32B'},
                             {id: 2, value: carbonCar, label: 'Car trips', color: '#F25F5C'},
 
