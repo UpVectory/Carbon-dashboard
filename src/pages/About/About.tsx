@@ -36,20 +36,20 @@ export const About = () => {
           <p>If you’d like to review more our projects, please visit:</p>
 
           <div className={styles.icons}>
-            <a href="/" target="_blank">
+            <a href="https://www.behance.net/upvectory" rel="noreferrer" target="_blank">
               <BehanceIcon />
             </a>
 
-            <a href="/" target="_blank">
+            <a href="https://github.com/upvectory" rel="noreferrer" target="_blank">
               <GitIcon />
             </a>
 
-            <a href="/" target="_blank">
+            <a href="https://dribbble.com/UpVectory" rel="noreferrer" target="_blank">
               <DribbbleIcon />
             </a>
           </div>
 
-          <a href="/" target="_blank">upvectory.com</a>
+          <a href="https://www.upvectory.com/" rel="noreferrer" target="_blank">upvectory.com</a>
         </div>
         <div className={styles.right}>
           <img src="./about.png" alt="About" />

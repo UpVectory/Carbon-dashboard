@@ -23,6 +23,7 @@ export const CustomTextInput: React.FC<Props> = ({
       onChange={(e) => onChangeValue(e.target.value)}
       type="text"
       sx={{
+          fontFamily: 'Manrope, sans-serif',
         '& fieldset': {
           border: '1px solid #ECF5ED',
           borderRadius: '8px',

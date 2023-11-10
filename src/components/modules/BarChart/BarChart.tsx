@@ -48,7 +48,7 @@ export const BarChart = ({
   const totalCarbonEmission = Math.ceil(dataWorking.reduce((acc, item) => item.carbon + acc, 0));
   
   const chart = Array(rangeInervalQty + 1).fill(0).map((_, index) => {
-    const maxCarbonValue = maxCarbonEmissionItem.carbon || 100; // max value will 100 by default
+    const maxCarbonValue = maxCarbonEmissionItem.carbon || 80; // max value will 100 by default
     const interval = Math.ceil(maxCarbonValue / rangeInervalQty);
 
     if (index === rangeInervalQty) {

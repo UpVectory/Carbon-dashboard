@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     MyGlobalContext,
     TableRowFlight,
@@ -47,17 +47,6 @@ export const Plane = () => {
     minmax(100px, max-content)`
   }
 
-
-    useEffect(() => {
-        setFlights(currentFlights => [
-            ...currentFlights,
-        ].map(flight => ({
-            ...flight,
-            amount: 0,
-        })));
-    }, []);
-
-
     const AddNewHandleClick = () => {
         const newFlight = {
             id: `${flights.length + customFlights.length + 1}`,
@@ -100,6 +89,8 @@ export const Plane = () => {
             .filter(flight=>!flight.custom)
         );
     }
+
+    console.log('flights', flights)
 
     return (
         <Layout>
