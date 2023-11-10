@@ -1,5 +1,5 @@
 import {Autocomplete, TextField} from '@mui/material';
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 
 type Props = {
     dataArray: string[];
