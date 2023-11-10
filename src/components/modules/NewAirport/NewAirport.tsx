@@ -65,7 +65,7 @@ export const NewAirport = ({
                     setCarbon(res[1]!.data!.data!.co2e_kg);
                 })
                 .catch((err) => {
-                    setError(err);
+                    setError('Database error, please try again.');
                     console.error('Error:', err);
                 })
                 .finally(() => setLoading(false));

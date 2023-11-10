@@ -17,10 +17,6 @@ export const PieChart = () => {
         return '';
     }
 
-    console.log('carbon: ', carbon)
-    console.log('carbonFl: ', carbonFl)
-    console.log('carbonCar: ', carbonCar)
-
     return (
         <div className={styles.piechart}>
             <h2>Your total carbon emission</h2>

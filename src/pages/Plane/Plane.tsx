@@ -90,8 +90,6 @@ export const Plane = () => {
         );
     }
 
-    console.log('flights', flights)
-
     return (
         <Layout>
             <Dashboard>
