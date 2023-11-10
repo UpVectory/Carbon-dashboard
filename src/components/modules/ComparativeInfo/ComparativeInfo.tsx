@@ -20,7 +20,7 @@ export const ComparativeInfo = () => {
   const totalCarbonEmission = +getWeight(weight, carbon);
   
   const fillBgHeight = currentRate > 100
-    ? currentRate - Math.floor(currentRate / 100) * 100
+    ? 100
     : currentRate;
 
   return (
@@ -39,7 +39,7 @@ export const ComparativeInfo = () => {
             }}
           ></div>
         </div>
-        <p>{carbon > currentItem ? `x${Math.floor(currentRate / 100)}` : ''}</p>
+        <p>{carbon > currentItem ? `x${Math.ceil(currentRate / 100)}` : ''}</p>
       </div>
       <p className={styles.label}>
         Your carbon emission is {getNumbersWithCommaSeparate(Math.ceil(totalCarbonEmission))} {weight}
