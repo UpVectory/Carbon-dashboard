@@ -5,7 +5,7 @@ import {About, Cars, Home, Plane, Total} from "./pages";
 export const routesPath = {
     home: '/',
     cars: '/cars',
-    plane: '/plane',
+    plane: '/flights',
     total: '/total',
     about: '/about'
 }
