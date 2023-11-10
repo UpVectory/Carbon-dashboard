@@ -2,7 +2,7 @@ import {Layout} from "./Layout";
 import {TreeOffsets} from "./TreeOffsets";
 import {BarChart} from "./BarChart";
 import {PieChart} from "./PieChart";
-import {ComparativeInfo} from "./СomparativeInfo";
+import {ComparativeInfo} from "./ComparativeInfo";
 import {Dashboard, DashboardGraph, DashboardTable, DashboarScoreboard} from "./Dashboard";
 import {
     TableScore,
