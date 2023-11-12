@@ -1,20 +1,29 @@
 import React from 'react';
+import clsx from 'clsx';
 
 import styles from './TableScore.module.scss';
 
 type Props = {
   children: React.ReactNode;
   style?: React.CSSProperties;
+  className?: string;
 };
 
 
 export const TableScore: React.FC<Props> = ({
   children,
   style,
+  className,
 }) => {
   return (
     <div style={{ ...style}} className={styles.tableScore}>
-      <div className={styles.wrapper}>
+      <div
+        className={clsx(
+          styles.wrapper,
+          className
+        )}
+
+      >
         {children}
       </div>
     </div>

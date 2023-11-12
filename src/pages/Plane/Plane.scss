@@ -1,0 +1,21 @@
+@import '../../styles/index';
+
+.plane {
+  thead > tr {
+    grid-template-columns: $flight-cols-pattern-sm;
+  }
+
+  &--new {
+    grid-template-columns: $flight-cols-pattern-sm !important;
+  }
+  
+  @include mediaXl {
+    thead > tr {
+      grid-template-columns: $flight-cols-pattern-lg;
+    }
+  
+    &--new {
+      grid-template-columns: $flight-cols-pattern-lg !important;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./mixins";
 
 
 html, body {
@@ -35,4 +36,20 @@ button {
 *::-webkit-scrollbar-track-piece:end {
   background-color: $color-light;
   margin: 0 0 10px;
+}
+
+h1 {
+  font-size: 32px !important;
+
+  @include mediaMd {
+    font-size: 60px !important;
+  }
+}
+
+h2, h3 {
+  font-size: 18px !important;
+
+  @include mediaMd {
+    font-size: 24px !important;
+  }
 }

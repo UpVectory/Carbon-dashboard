@@ -24,6 +24,8 @@ import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.sv
 
 import data from "../../data/cars.json";
 
+import './Cars.scss';
+
 export const Cars = () => {
   const {
     length,
@@ -37,14 +39,6 @@ export const Cars = () => {
   } =
   useContext(MyGlobalContext);
   const { cars } = data;
-
-  const columnWidthStyle = {
-    gridTemplateColumns: `
-      minmax(30px, 35px)
-      minmax(100px, 120px)
-      repeat(2, minmax(130px, 1fr))
-      minmax(100px, 105px)`
-  }
 
   const handleRefresh = () => {
     setCarbon(carbon- carbonCar)
@@ -62,11 +56,7 @@ export const Cars = () => {
     <Layout>
       <Dashboard>
         <DashboardTable>
-          <TableScore
-            style={{
-
-            }}
-          >
+          <TableScore className="cars">
             <TableScoreCaption>
               <h2>Fill up your car trips</h2>
               <div>
@@ -82,7 +72,7 @@ export const Cars = () => {
 
             <TableScoreContentTable>
               <TableScoreContentTableHead>
-                <tr style={{...columnWidthStyle}}>
+                <tr>
                   <th>#</th>
                   <th>Type</th>
                   <th>Fuel Type</th>

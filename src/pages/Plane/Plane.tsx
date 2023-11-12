@@ -22,7 +22,9 @@ import {
 } from "../../components/modules";
 import {Flights} from "../../types";
 import data from '../../data/popular-flights.json'
-import {ReactComponent as RefreshIcon} from "../../assets/refresh-outline_1.svg";
+import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.svg";
+
+import './Plane.scss';
 
 export const Plane = () => {
     const {
@@ -94,7 +96,7 @@ export const Plane = () => {
         <Layout>
             <Dashboard>
                 <DashboardTable>
-                    <TableScore>
+                    <TableScore className='plane'>
                         <TableScoreCaption>
                             <h2>
                                 Fill up your flights
@@ -120,7 +122,7 @@ export const Plane = () => {
 
                         <TableScoreContentTable>
                             <TableScoreContentTableHead>
-                              <tr style={{...columnWidthStyle}}>
+                                <tr>
                                     <th>#</th>
                                     <th>Departure</th>
                                     <th>Arrival</th>
@@ -141,14 +143,14 @@ export const Plane = () => {
                                     />
                                 ))}
                                 {customFlights.map((v) => (
-                                    <NewAirport
-                                    flights={flights}
-                                    setFlights={(v) => setFlights(v)}
-                                    customFlights={customFlights}
-                                    setCustomFlights={(v) => setCustomFlights(v)}
-                                    info={v}
-                                    key={v.id}
-                                    style={{...columnWidthStyle}}
+                                  <NewAirport
+                                      className='plane--new'
+                                      flights={flights}
+                                      setFlights={(v) => setFlights(v)}
+                                      customFlights={customFlights}
+                                      setCustomFlights={(v) => setCustomFlights(v)}
+                                      info={v}
+                                      key={v.id}
                                   />
                                 ))}
                             </TableScoreContentTableBody>

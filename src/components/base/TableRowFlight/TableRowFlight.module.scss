@@ -1,13 +1,14 @@
 @import "/src/styles/index";
 
 .row {
-    grid-template-columns: 
-    minmax(30px, 35px)
-    repeat(2, minmax(130px, 1fr))
-    repeat(2, minmax(100px, 130px))
-    minmax(100px, max-content) !important;
 
+  grid-template-columns: $flight-cols-pattern-sm !important;
+  gap: 5px;
+
+  @include mediaXl {
+    grid-template-columns: $flight-cols-pattern-lg !important;
     height: max(calc(100% / 10), 59px);
+  }
 
   & > td {
     font-size: 14px;

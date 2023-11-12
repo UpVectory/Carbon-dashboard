@@ -8,14 +8,14 @@ input {
   color: $color-dark;
   font-size: 14px;
   line-height: 1.375;
-  grid-template-columns: 
-    minmax(30px, 35px)
-    minmax(100px, 120px)
-    repeat(2, minmax(130px, 1fr))
-    minmax(100px, 105px) !important;
+  grid-template-columns: $cars-cols-pattern-sm !important;
+  gap: 5px;
 
-  gap: 20px !important;
-  height: max(calc(100% / 8), 73px);
+  @include mediaXl {
+    grid-template-columns: $cars-cols-pattern-lg !important;
+    gap: 20px !important;
+    height: max(calc(100% / 8), 73px);
+  }
 
   &IconLabel {
     font-size: inherit;
