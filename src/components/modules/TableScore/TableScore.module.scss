@@ -34,25 +34,10 @@
     padding: 0;
     width: 100%;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; // if needed
   }
-
-  &FlightTable {
-    grid-template-columns: 
-      minmax(30px, 35px)
-      repeat(2, minmax(130px, 1fr))
-      repeat(2, minmax(100px, 110px))
-      minmax(100px, 1fr)
-  }
-
-  &CarTable {
-    grid-template-columns: 
-      minmax(30px, 35px)
-      repeat(3, minmax(170px, 1fr))
-      minmax(100px, 105px) !important;
-
-    gap: 20px !important;
-  }
-
 }
 
 .wrapper {
@@ -63,7 +48,7 @@
 }
 
 .caption {
-  padding: 0 20px 13px;
+  padding: 0 15px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,6 +65,10 @@
     gap: 12px;
     align-items: center;
   }
+
+  @include mediaMd {
+    padding: 0 20px 13px;
+  }
 }
 
 .table {
@@ -90,13 +79,13 @@
 }
 
 .tableHead {
-  padding: 0 20px;
+  padding: 0 15px;
   font-size: 16px;
   color: $color-gray;
   line-height: 1;
 
   & > tr {
-    padding: 20px 0;
+    padding: 15px 0;
     border-top: 1px solid $color-light;
     border-bottom: 1px solid $color-light;
   }
@@ -108,10 +97,18 @@
   th:last-child {
     color: $color-dark;
   }
+
+  @include mediaMd {
+    padding:  0 20px;
+
+    & > tr {
+      padding: 20px 0;
+    }
+  }
 }
 
 .tableBody {
-  padding: 0 20px;
+  padding: 0 15px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -124,5 +121,9 @@
 
   & > tr:last-child {
     padding: 12px 0 0;
+  }
+
+  @include mediaMd {
+    padding: 0 20px;
   }
 }

@@ -1,14 +1,19 @@
 @import "/src/styles/index";
 
 .treeOffsets{
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 15px;
   height: 100%;
   background-color: $color-white;
   border-radius: 32px;
   overflow: auto;
+
+  @include mediaMd {
+    padding: 20px;
+  }
 }
 
 

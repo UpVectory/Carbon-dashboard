@@ -40,14 +40,6 @@ export const Plane = () => {
     const [flights, setFlights] = useState<Flights[]>(data.flights);
     const [qtyAir, setQtyAir] = useState<number>(0)
     const [customFlights, setCustomFlights] = useState<Flights[]>([]);
-    
-  const columnWidthStyle = {
-    gridTemplateColumns: `
-    minmax(30px, 35px)
-    repeat(2, minmax(130px, 1fr))
-    repeat(2, minmax(100px, 130px))
-    minmax(100px, max-content)`
-  }
 
     const AddNewHandleClick = () => {
         const newFlight = {

@@ -13,7 +13,7 @@
   height: auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows:  50% repeat(2, minmax(1px, 1fr));
+  grid-template-rows: auto repeat(2, minmax(1px, auto));
   grid-template-areas: 
   "dash-table"
   "dash-graph"
@@ -23,26 +23,30 @@
 
 
   @include mediaSm {
-    height: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 60% minmax(0, 1fr);
-    grid-template-areas: 
-      "dash-table dash-table"
-      "dash-graph dash-score";
-    gap: 15px;
-    padding: 0;
+    @media (orientation: portrait) {
+      height: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 50% minmax(1px, 1fr);
+      grid-template-areas: 
+        "dash-table dash-table"
+        "dash-graph dash-score";
+      gap: 15px;
+      padding: 0;
+    }
+
   }
 
-
-
   @include mediaMd {
-    grid-template-columns: 57.7% minmax(0, 1fr);
-    grid-template-rows: 58.4% minmax(0, 1fr);
-    grid-template-areas: 
-      "dash-table dash-graph"
-      "dash-table dash-score";
-    height: 100%;
-    gap: 20px;
+
+    @media (min-height: 700px ) {
+      grid-template-columns: 57.7% minmax(0, 1fr);
+      grid-template-rows: 58.4% minmax(0, 1fr);
+      grid-template-areas: 
+        "dash-table dash-graph"
+        "dash-table dash-score";
+      height: 100%;
+      gap: 20px;
+    }
   }
 }
 

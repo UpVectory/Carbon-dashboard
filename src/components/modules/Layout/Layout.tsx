@@ -65,7 +65,7 @@ export const Layout = ({children}: LayoutProps) => {
         </Stack>
       </Grid>
 
-      <Grid item md className={styles.content}>
+      <Grid item md className={styles.content} sx={{height: '100%'}}>
         <Stack
           className={styles.board}
         >
