@@ -76,7 +76,8 @@ export const CustomNumInput: React.FC<Props> = ({
                 },
                 '&:disabled': {
                   opacity: '0.6'
-                }
+                },
+                padding: '3px',
               }}
               onClick={handleSubtract}
             >
@@ -103,7 +104,8 @@ export const CustomNumInput: React.FC<Props> = ({
                 },
                 '&:disabled': {
                   opacity: '0.6'
-                }
+                },
+                padding: '3px',
               }}
             >
               <SvgIcon
