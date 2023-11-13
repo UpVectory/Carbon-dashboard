@@ -50,7 +50,13 @@
     }
   }
 
+  @media screen and (orientation: landscape) {
+    height: auto;
+    flex-direction: row;
+  }
+
   @include mediaMd {
+    height: 100%;
     padding: 32px;
     flex-direction: row;
     justify-content: space-between;

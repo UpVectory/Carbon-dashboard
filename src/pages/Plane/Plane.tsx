@@ -25,6 +25,7 @@ import data from '../../data/popular-flights.json'
 import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.svg";
 
 import './Plane.scss';
+import { Stack } from '@mui/material';
 
 export const Plane = () => {
     const {
@@ -93,7 +94,7 @@ export const Plane = () => {
                             <h2>
                                 Fill up your flights
                             </h2>
-                            <div>
+                            <Stack direction='row' height={46}>
                                 <CustomButtonSecondary
                                     variant="outlined"
                                     onClick={refreshCustomHandleClick}
@@ -109,7 +110,7 @@ export const Plane = () => {
                                 >
                                     Add new
                                 </CustomButtonPrimary>
-                            </div>
+                            </Stack>
                         </TableScoreCaption>
 
                         <TableScoreContentTable>

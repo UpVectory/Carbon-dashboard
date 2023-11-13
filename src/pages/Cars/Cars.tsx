@@ -25,6 +25,7 @@ import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.sv
 import data from "../../data/cars.json";
 
 import './Cars.scss';
+import Stack from "@mui/material/Stack";
 
 export const Cars = () => {
   const {
@@ -59,7 +60,7 @@ export const Cars = () => {
           <TableScore className="cars">
             <TableScoreCaption>
               <h2>Fill up your car trips</h2>
-              <div>
+              <Stack direction='row'  height={46}>
                 <CustomButtonSecondary
                   variant="outlined"
                   onClick={handleRefresh}
@@ -67,7 +68,7 @@ export const Cars = () => {
                   <RefreshIcon />
                 </CustomButtonSecondary>
 
-              </div>
+              </Stack>
             </TableScoreCaption>
 
             <TableScoreContentTable>
