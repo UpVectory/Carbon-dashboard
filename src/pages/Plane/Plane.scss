@@ -8,6 +8,12 @@
   &--new {
     grid-template-columns: $flight-cols-pattern-sm !important;
   }
+
+  &__table-link {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+  }
   
   @include mediaXl {
     thead > tr {

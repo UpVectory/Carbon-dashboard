@@ -18,6 +18,7 @@
   @include mediaMd {
     position: static;
     transform: translateY(0);
+    padding: 0;
   }
 
   &Active {

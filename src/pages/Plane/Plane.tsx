@@ -25,7 +25,7 @@ import data from '../../data/popular-flights.json'
 import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.svg";
 
 import './Plane.scss';
-import { Stack } from '@mui/material';
+import { Link, Stack } from '@mui/material';
 
 export const Plane = () => {
     const {
@@ -149,8 +149,28 @@ export const Plane = () => {
                             </TableScoreContentTableBody>
 
                         </TableScoreContentTable>
-
                     </TableScore>
+                    <Link
+                      href="https://en.wikipedia.org/wiki/List_of_busiest_passenger_air_routes"
+                      sx={{
+                        position: 'absolute',
+                        left: 29,
+                        bottom: -8,
+                        transform: 'translateY(100%)',
+                        display: {
+                          xs: 'none',
+                          md: 'block',
+                        },
+                        fontSize: 10,
+                        lineHeight: 1.4,
+                        fontWeight: 400,
+                        color: '#61463A',
+                      }}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      List of busiest passenger air routes on Wikipedia
+                    </Link>
                 </DashboardTable>
                 <DashboardGraph>
                   <BarChart data={flightBarChartArr} label={'Your carbon emission per flight'} />

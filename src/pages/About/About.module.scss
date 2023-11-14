@@ -30,7 +30,7 @@
   }
 
   @include mediaMd {
-    padding: 32px 0 32px 32px;
+    padding: 32px 0 32px 52px;
     height: 100%;
   }
 }
@@ -42,23 +42,33 @@
   }
 
   @include mediaMd {
-    flex-basis: auto;
-    max-width: 700px;
+    // flex-basis: auto;
+    // max-width: 700px;
+    flex: 0 1 47%;
   }
 
 }
 
 .right {
   display: none;
+  position: relative;
+  flex: 0 1 50%;
+  max-height: 100%;
+
+  &::after {
+    content: '';
+    display: block;
+    padding: 0 0 100%;
+  }
 
   img {
-    width: 100%;
-    height: auto;
+    position: absolute;
+    right: 0;
+    width: auto;
   }
   
   @include mediaMd {
-    display: block;
-    max-width: 420px;
+    display: flex;
   }
 
 }

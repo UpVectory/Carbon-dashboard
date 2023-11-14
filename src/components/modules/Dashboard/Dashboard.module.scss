@@ -37,6 +37,7 @@
   }
 
   @include mediaMd {
+    padding: 0;
 
     @media (min-height: 700px ) {
       grid-template-columns: 57.7% minmax(0, 1fr);
@@ -59,6 +60,7 @@
 
 .table {
   grid-area: dash-table;
+  position: relative;
 }
 
 .graph {

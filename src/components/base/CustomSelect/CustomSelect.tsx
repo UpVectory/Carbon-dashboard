@@ -36,6 +36,7 @@ export const CustomSelect: React.FC<Props> = ({
 
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '#61B766',
+            borderWidth: 1,
           },
 
           '& .MuiInputBase-input:hover ~ fieldset': {
