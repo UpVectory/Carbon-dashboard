@@ -20,10 +20,9 @@ export const CustomAutocomplete: React.FC<Props> = ({
             onSelectValue(val);
         }
     }
-
+  
     return (
         <Autocomplete
-            disablePortal
             id={id}
             options={dataArray}
             sx={{
@@ -52,7 +51,7 @@ export const CustomAutocomplete: React.FC<Props> = ({
                             backgroundColor: '#fff',
 
                             '&::placeholder': {
-                                color: '#61b766',
+                                color: '#C1B9B2',
                             }
                         },
                         '& .MuiOutlinedInput-root': {

@@ -22,7 +22,10 @@ import {
 } from "../../components/modules";
 import {Flights} from "../../types";
 import data from '../../data/popular-flights.json'
-import {ReactComponent as RefreshIcon} from "../../assets/refresh-outline_1.svg";
+import { ReactComponent as RefreshIcon } from "../../assets/refresh-outline_1.svg";
+
+import './Plane.scss';
+import { Link, Stack } from '@mui/material';
 
 export const Plane = () => {
     const {
@@ -38,14 +41,6 @@ export const Plane = () => {
     const [flights, setFlights] = useState<Flights[]>(data.flights);
     const [qtyAir, setQtyAir] = useState<number>(0)
     const [customFlights, setCustomFlights] = useState<Flights[]>([]);
-    
-  const columnWidthStyle = {
-    gridTemplateColumns: `
-    minmax(30px, 35px)
-    repeat(2, minmax(130px, 1fr))
-    repeat(2, minmax(100px, 130px))
-    minmax(100px, max-content)`
-  }
 
     const AddNewHandleClick = () => {
         const newFlight = {
@@ -94,12 +89,12 @@ export const Plane = () => {
         <Layout>
             <Dashboard>
                 <DashboardTable>
-                    <TableScore>
+                    <TableScore className='plane'>
                         <TableScoreCaption>
                             <h2>
                                 Fill up your flights
                             </h2>
-                            <div>
+                            <Stack direction='row' height={46}>
                                 <CustomButtonSecondary
                                     variant="outlined"
                                     onClick={refreshCustomHandleClick}
@@ -115,12 +110,12 @@ export const Plane = () => {
                                 >
                                     Add new
                                 </CustomButtonPrimary>
-                            </div>
+                            </Stack>
                         </TableScoreCaption>
 
                         <TableScoreContentTable>
                             <TableScoreContentTableHead>
-                              <tr style={{...columnWidthStyle}}>
+                                <tr>
                                     <th>#</th>
                                     <th>Departure</th>
                                     <th>Arrival</th>
@@ -141,21 +136,41 @@ export const Plane = () => {
                                     />
                                 ))}
                                 {customFlights.map((v) => (
-                                    <NewAirport
-                                    flights={flights}
-                                    setFlights={(v) => setFlights(v)}
-                                    customFlights={customFlights}
-                                    setCustomFlights={(v) => setCustomFlights(v)}
-                                    info={v}
-                                    key={v.id}
-                                    style={{...columnWidthStyle}}
+                                  <NewAirport
+                                      className='plane--new'
+                                      flights={flights}
+                                      setFlights={(v) => setFlights(v)}
+                                      customFlights={customFlights}
+                                      setCustomFlights={(v) => setCustomFlights(v)}
+                                      info={v}
+                                      key={v.id}
                                   />
                                 ))}
                             </TableScoreContentTableBody>
 
                         </TableScoreContentTable>
-
                     </TableScore>
+                    <Link
+                      href="https://en.wikipedia.org/wiki/List_of_busiest_passenger_air_routes"
+                      sx={{
+                        position: 'absolute',
+                        left: 29,
+                        bottom: -8,
+                        transform: 'translateY(100%)',
+                        display: {
+                          xs: 'none',
+                          md: 'block',
+                        },
+                        fontSize: 10,
+                        lineHeight: 1.4,
+                        fontWeight: 400,
+                        color: '#61463A',
+                      }}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      List of busiest passenger air routes on Wikipedia
+                    </Link>
                 </DashboardTable>
                 <DashboardGraph>
                   <BarChart data={flightBarChartArr} label={'Your carbon emission per flight'} />

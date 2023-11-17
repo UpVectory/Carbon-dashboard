@@ -7,3 +7,21 @@ $color-light: #ecf5ed;
 $color-dark: #61463a;
 $color-gray: #c1b9b2;
 
+$bp-sm: 600px;
+$bp-md: 900px;
+$bp-lg: 1200px;
+$bp-xl: 1536px;
+
+$flight-cols-pattern-sm: minmax(30px, 35px) repeat(5, 1fr);
+$flight-cols-pattern-lg: 
+  minmax(30px, 35px)
+  repeat(2, minmax(130px, 1fr))
+  repeat(2, minmax(100px, 130px))
+  minmax(100px, max-content);
+
+$cars-cols-pattern-sm: minmax(30px, 35px) repeat(4, 1fr);
+$cars-cols-pattern-lg:
+  minmax(30px, 35px)
+  minmax(100px, 120px)
+  repeat(2, minmax(130px, 1fr))
+  minmax(100px, 105px) !important;

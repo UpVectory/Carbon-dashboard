@@ -24,7 +24,6 @@ export const CustomSwitch = ({label1, label2, value, setValue, type, setGlobalVa
     return <div style={{
         position:"relative",
         display:"flex",
-        marginBottom: '12px'
     }}>
         <span onClick={handleChange} className={`${styles.switchText} ${styles.switchTextLeft} ${!active ? styles.active : ''}`}>
             {label1}</span>

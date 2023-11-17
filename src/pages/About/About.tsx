@@ -52,7 +52,7 @@ export const About = () => {
           <a href="https://www.upvectory.com/" rel="noreferrer" target="_blank">upvectory.com</a>
         </div>
         <div className={styles.right}>
-          <img src="./about.png" alt="About" />
+          <img src="./about-1.png" alt="About" />
         </div>
       </div>
     </Layout>

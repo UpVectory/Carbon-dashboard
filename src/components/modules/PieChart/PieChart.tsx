@@ -3,11 +3,13 @@ import React, {useContext} from "react";
 import {MyGlobalContext} from "../../base";
 
 import styles from './PieChart.module.scss';
+import { useMediaQuery } from "@mui/material";
 
 export const PieChart = () => {
-    const {carbon, carbonFl, carbonCar} = useContext(MyGlobalContext);
+  const { carbon, carbonFl, carbonCar } = useContext(MyGlobalContext);
+  const widthMin600 = useMediaQuery('(min-width: 600px)');
 
-    const getPercentageString = (val: number): string => {
+  const getPercentageString = (val: number): string => {
         const percent = Math.round(val / carbon * 100);
 
         if (isFinite(percent)) {
@@ -40,8 +42,8 @@ export const PieChart = () => {
                             {id: 2, value: carbonCar, label: 'Car trips', color: '#F25F5C'},
 
                         ],
-                        outerRadius: 250,
-                        cy: 276,
+                        outerRadius: widthMin600 ? 250 : 150,
+                        cy: widthMin600 ? 276 : 165,
                         startAngle: 90,
                         endAngle: 450,
                         paddingAngle: 0,
@@ -83,8 +85,8 @@ export const PieChart = () => {
                     },
 
                 }}
-                margin={{right: 5}}
-                height={600}
+                margin={{ right: 5 }}
+                height={widthMin600 ? 600 : 400}
             />
         </div>
     );

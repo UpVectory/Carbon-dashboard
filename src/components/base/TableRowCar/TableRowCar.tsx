@@ -128,7 +128,7 @@ const MemoTableRowCar: React.FC<Props> = ({
     <tr className={styles.TableRowCar}>
       <th>{id}</th>
       <td>
-        <TypeIcon />
+        <TypeIcon style={{width: '100%'}} />
         <p className={styles.TableRowCarIconLabel}>{type}</p>
       </td>
       <td>

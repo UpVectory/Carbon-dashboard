@@ -10,8 +10,8 @@ type NewAirportProps = {
     flights: Flights[],
     setFlights: (c: Flights[]) => void,
     customFlights: Flights[],
-  setCustomFlights: (c: Flights[]) => void,
-    style?: {},
+    setCustomFlights: (c: Flights[]) => void,
+    className?: string,
 }
 
 
@@ -25,7 +25,7 @@ export const NewAirport = ({
                                flights,
                                setFlights,
                                setCustomFlights,
-                               style,
+                               className,
                            }: NewAirportProps) => {
     const [dep, setDep] = useState('');
     const [arriv, setArriv] = useState('');
@@ -115,7 +115,7 @@ export const NewAirport = ({
     );
 
     return (
-        <tr style={{...style}}>
+        <tr className={className ? className : ''}>
             <th>{info.id}</th>
             <td>
                 <CustomAutocomplete

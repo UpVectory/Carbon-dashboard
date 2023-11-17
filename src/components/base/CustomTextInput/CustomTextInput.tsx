@@ -32,7 +32,7 @@ export const CustomTextInput: React.FC<Props> = ({
         '& .MuiInputBase-root': {
           fontSize: 14,
           fontWeight: 500,
-          color: '#61463A',
+          color: '#C1B9B2',
         },
         
         '& .MuiInputBase-root:hover fieldset': {
@@ -40,6 +40,7 @@ export const CustomTextInput: React.FC<Props> = ({
         },
         '& .MuiInputBase-root.Mui-focused fieldset': {
           borderColor: '#61B766',
+          borderWidth: 1,
         }
       }}
     />

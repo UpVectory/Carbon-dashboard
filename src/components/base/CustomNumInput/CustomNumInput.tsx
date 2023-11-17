@@ -76,7 +76,8 @@ export const CustomNumInput: React.FC<Props> = ({
                 },
                 '&:disabled': {
                   opacity: '0.6'
-                }
+                },
+                padding: '3px',
               }}
               onClick={handleSubtract}
             >
@@ -103,7 +104,8 @@ export const CustomNumInput: React.FC<Props> = ({
                 },
                 '&:disabled': {
                   opacity: '0.6'
-                }
+                },
+                padding: '3px',
               }}
             >
               <SvgIcon
@@ -141,9 +143,9 @@ export const CustomNumInput: React.FC<Props> = ({
             borderColor: '#61B766',
           },
 
-          '& .MuiInputBase-root.Mui-focused fieldset': {
-            border: '#61B766',
-            borderWidth: '1px',
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#61B766',
+            borderWidth: 1,
           }
 
         }}

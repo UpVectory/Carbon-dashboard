@@ -1,0 +1,27 @@
+@import '../../styles/index';
+
+.plane {
+  thead > tr {
+    grid-template-columns: $flight-cols-pattern-sm;
+  }
+
+  &--new {
+    grid-template-columns: $flight-cols-pattern-sm !important;
+  }
+
+  &__table-link {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+  }
+  
+  @include mediaXl {
+    thead > tr {
+      grid-template-columns: $flight-cols-pattern-lg;
+    }
+  
+    &--new {
+      grid-template-columns: $flight-cols-pattern-lg !important;
+    }
+  }
+}

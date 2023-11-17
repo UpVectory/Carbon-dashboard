@@ -2,17 +2,32 @@ import {routes} from "../../../routes";
 import {Link} from "react-router-dom";
 import React from "react";
 import styles from './Navigation.module.scss'
+import clsx from "clsx";
 
-export const Navigation = () => {
+type Props = {
+  isOpenMenu: boolean;
+}
 
-    const currentPath = window.location.pathname
-    return <nav className={styles.nav}>
-        {routes.map(({path, name}, index) => (
-            <Link
-                className={`${styles.link} ${currentPath === path && styles.active}`}
-                key={index}
-                to={path}>
-                {name}
-            </Link>))}
+export const Navigation: React.FC<Props> = ({
+  isOpenMenu,
+}) => {
+  const currentPath = window.location.pathname;
+
+  return (
+    <nav
+      className={clsx(
+        styles.nav,
+        isOpenMenu && styles.navActive,
+      )}
+    >
+      {routes.map(({path, name}, index) => (
+        <Link
+          className={`${styles.link} ${currentPath === path && styles.active}`}
+          key={index}
+          to={path}>
+          {name}
+        </Link>
+      ))}
     </nav>
+  )
 }

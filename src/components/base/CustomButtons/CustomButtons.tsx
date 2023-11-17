@@ -18,7 +18,8 @@ export const CustomButtonPrimary = styled(Button)<ButtonProps>(() => ({
   },
   ':disabled': {
     backgroundColor: 'transparent',
-  }
+  },
+  height: 'inherit',
 }));
 
 export const CustomButtonSecondary = styled(Button)<ButtonProps>(() => ({

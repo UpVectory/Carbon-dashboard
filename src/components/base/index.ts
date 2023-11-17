@@ -5,7 +5,8 @@ import {Navigation} from "./Navigation";
 import {CustomSwitch} from './CustomSwitch'
 import {CustomAutocomplete} from "./CustomAutocomplete";
 import {CustomNumInput} from "./CustomNumInput";
-import {CustomButtonPrimary, CustomButtonSecondary} from "./CustomButtons";
+import { CustomButtonPrimary, CustomButtonSecondary } from "./CustomButtons";
+import { Hamburger } from "./Hamburger";
 
 
 export {
@@ -18,5 +19,6 @@ export {
     CustomAutocomplete,
     CustomNumInput,
     CustomButtonPrimary,
-    CustomButtonSecondary
+    CustomButtonSecondary,
+    Hamburger,
 }
