@@ -35,11 +35,11 @@ export interface FlightsTravelEstimateRequiredFilds extends DistanceBetweenAirpo
 
 const createAxiosConnection = (url: string, auth : boolean) => {
     const headers:RawAxiosRequestHeaders | AxiosHeaders | Partial<HeadersDefaults> = {
-        'X-RapidAPI-Key': '4bf53e707bmsh99b565f627ce3d5p105354jsnf4d415be07ec',
-        'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com',
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': process.env.REACT_APP_API_HOST,
     }
     if (auth) {
-        headers.Authorization = 'Bearer fQ98oU704xFvsnXcQLVDbpeCJHPglG1DcxiMLKfpeNEMGumlbzVf1lCI6ZBx'
+        headers.Authorization = `Bearer ${process.env.REACT_APP_API_KEY}`
         headers['content-type'] = 'application/x-www-form-urlencoded'
     }
 
