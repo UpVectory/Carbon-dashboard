@@ -3,9 +3,8 @@
 .about {
   padding: 15px;
   width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 40px;
 
   h1 {
@@ -30,47 +29,46 @@
   }
 
   @include mediaMd {
-    padding: 32px 0 32px 52px;
-    height: 100%;
+    padding: 0 32px 0 52px;
+    gap: 30px;
   }
 }
 
 .left {
+  margin: auto 0;
+  padding: 0 0 15px;
 
   p:not(:last-child) {
     margin: 0 0 16px 0;
   }
 
   @include mediaMd {
-    // flex-basis: auto;
-    // max-width: 700px;
-    flex: 0 1 47%;
+    padding: 32px 0;
+  }
+
+  @include mediaLg {
+    flex: 0 1 59%;
   }
 
 }
 
 .right {
+  position: fixed;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex: 0 1 auto;
   display: none;
-  position: relative;
-  flex: 0 1 50%;
-  max-height: 100%;
-  @media (min-width: 1500px) {
-    flex: 0 1 72%;
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    padding: 0 0 100%;
-  }
+  max-width: 35vw;
+  height: 100%;
+  padding: 32px 0 32px 32px;
 
   img {
-    position: absolute;
-    right: 0;
-    width: auto;
+    width: 100%;
+    object-fit: contain;
   }
   
-  @include mediaMd {
+  @include mediaLg {
     display: flex;
   }
 
