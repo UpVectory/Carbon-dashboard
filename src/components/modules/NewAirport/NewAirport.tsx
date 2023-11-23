@@ -116,7 +116,7 @@ export const NewAirport = ({
 
     return (
         <tr className={className ? className : ''}>
-            <th>{info.id}</th>
+            <th style={{fontWeight:400,color:'#c1b9b2'}}>{info.id}</th>
             <td>
                 <CustomAutocomplete
                     shouldFocus

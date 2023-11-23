@@ -54,6 +54,9 @@
   position: relative;
   flex: 0 1 50%;
   max-height: 100%;
+  @media (min-width: 1500px) {
+    flex: 0 1 72%;
+  }
 
   &::after {
     content: '';
