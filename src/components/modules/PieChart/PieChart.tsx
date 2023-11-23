@@ -7,7 +7,7 @@ import { useMediaQuery } from "@mui/material";
 
 export const PieChart = () => {
   const { carbon, carbonFl, carbonCar } = useContext(MyGlobalContext);
-  const widthMin600 = useMediaQuery('(min-width: 600px)');
+  const widthMin900 = useMediaQuery('(min-width: 900px)');
 
   const getPercentageString = (val: number): string => {
         const percent = Math.round(val / carbon * 100);
@@ -21,9 +21,10 @@ export const PieChart = () => {
 
     return (
         <div className={styles.piechart}>
-            <h2>Your total carbon emission</h2>
+          <h2>Your total carbon emission</h2>
+          <div className={styles.piechartContainer}>
             <Pie
-                tooltip={{
+              tooltip={{
                     trigger: 'none',
                 }}
                 series={[
@@ -42,28 +43,16 @@ export const PieChart = () => {
                             {id: 2, value: carbonCar, label: 'Car trips', color: '#F25F5C'},
 
                         ],
-                        outerRadius: widthMin600 ? 250 : 150,
-                        cy: widthMin600 ? 276 : 165,
+                        outerRadius: widthMin900 ? 250 : 100,
+                        cy: widthMin900 ? 276 : 125,
                         startAngle: 90,
                         endAngle: 450,
                         paddingAngle: 0,
                     },
                 ]}
                 slotProps={{
-                    legend: {
-                        direction: 'row',
-                        position: {vertical: 'bottom', horizontal: 'middle'},
-                        itemMarkWidth: 24,
-                        itemMarkHeight: 24,
-                        markGap: 12,
-                        itemGap: 24,
-                        labelStyle: {
-                            borderRadius: '4px',
-                            fontSize: 16,
-                            fill: '#61463A',
-                            fontWeight: 500,
-                            fontFamily: 'inherit',
-                        },
+                  legend: {
+                      hidden: true,
                     },
                 }}
                 sx={{
@@ -86,8 +75,13 @@ export const PieChart = () => {
 
                 }}
                 margin={{ right: 5 }}
-                height={widthMin600 ? 600 : 400}
+              height={widthMin900 ? 600 : 300}
             />
+            <div className={styles.labels}>
+              <div className={styles.labelAmber}>Flights</div>
+              <div className={styles.labelRed}>Car trips</div>
+            </div>
+          </div>
         </div>
     );
 };

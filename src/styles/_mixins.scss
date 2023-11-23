@@ -23,3 +23,9 @@
     @content;
   }
 }
+
+@mixin mediaSM-LG-Landscape {
+  @media (min-width: $bp-sm) and (max-width: $bp-lg) and (orientation: landscape) {
+    @content;
+  }
+}

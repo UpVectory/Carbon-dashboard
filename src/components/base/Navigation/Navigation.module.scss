@@ -53,7 +53,6 @@
   }
 
   &:first-child {
-    // margin-bottom: 16px;
     &:after {
       content: '';
       position: absolute;
@@ -68,7 +67,7 @@
   }
 
   &:last-child {
-    // margin-top: 16px;
+    // margin: 0;
     &:before {
       content: '';
       position: absolute;
