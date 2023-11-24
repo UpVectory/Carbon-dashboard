@@ -46,7 +46,7 @@
   position: relative;
   height: 100%;
   max-height: 150px;
-  // width: 40%;
+  max-width: 150px;
   background-color: $color-white;
 
   img {
@@ -57,6 +57,7 @@
 
   @include mediaMd {
     max-height: 190px;
+    max-width: 190px;
   }
 }
 
