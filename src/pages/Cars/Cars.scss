@@ -4,10 +4,4 @@
   thead > tr {
     grid-template-columns: $cars-cols-pattern-sm;
   }
-  
-  @include mediaXl {
-    thead > tr {
-      grid-template-columns: $flight-cols-pattern-lg;
-    }
-  }
 }
