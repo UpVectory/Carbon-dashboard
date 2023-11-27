@@ -3,6 +3,9 @@ import {CustomAutocomplete, MyGlobalContext} from "../../base";
 import {Flights} from "../../../types";
 import {BarChartType} from "../../base/ctxProvider/context";
 import {apiAirports, getDistanceBetweenAirports, postFlightsTravelEstimate} from "../../../api";
+import {IconButton} from "@mui/material";
+import styles from "../../base/TableRowFlight/TableRowFlight.module.scss";
+import { ReactComponent as DeleteIcon } from "../../../assets/close.svg";
 
 
 type NewAirportProps = {
@@ -114,6 +117,11 @@ export const NewAirport = ({
         ]
     );
 
+    const handelClear = () => {
+        const clearCustFl: Flights[] = [];
+        setCustomFlights(clearCustFl)
+    }
+
     return (
         <tr className={className ? className : ''}>
             <th style={{fontWeight:400,color:'#c1b9b2'}}>{info.id}</th>
@@ -137,7 +145,18 @@ export const NewAirport = ({
             </td>
             <td>{loading ? 'Loading...' : error ? error.message : 0}</td>
             <td>0</td>
-            <td>{loading ? 'Loading...' : error ? error.message : 0}</td>
+            <td style={{position: 'relative'}}>
+                {loading ? 'Loading...' : error ? error.message : 0}
+                <IconButton
+                    onClick={handelClear}
+                    style={{ marginLeft: 0 }}
+                    aria-label="delete"
+                    size="small"
+                    className={styles.deleteButton}
+                >
+                    <DeleteIcon />
+                </IconButton>
+            </td>
         </tr>
     )
 }
