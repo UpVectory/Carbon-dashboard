@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { BarChartType, MyGlobalContext } from "../../base/ctxProvider/context";
 import "./BarChart.module.scss";
 import styles from "./BarChart.module.scss";
+import {getNumbersWithCommaSeparate} from "../../../utils";
 
 const rangeInervalQty = 8;
 
@@ -133,7 +134,7 @@ export const BarChart = ({
         </div>
       </div>
       <p className={styles.label}>
-        Your carbon emission is {totalCarbonEmission} {weight === 'kg' ? 'kg' : 'lb'}
+        Your carbon emission is {getNumbersWithCommaSeparate(totalCarbonEmission)} {weight}
       </p>
     </div>
   )

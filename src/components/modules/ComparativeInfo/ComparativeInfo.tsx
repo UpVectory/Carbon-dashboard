@@ -8,14 +8,14 @@ import styles from "./ComparativeInfo.module.scss";
 
 const items = {
     anchor: 11500,
-    house: 156000,
+    unfurnished_house: 156000,
 }
 
 
 export const ComparativeInfo = () => {
   const {carbon, weight} = useContext(MyGlobalContext);
   const img = carbon > 100000 ? house : anchor;
-  const currentItem = carbon > 100000 ? items.house : items.anchor;
+  const currentItem = carbon > 100000 ? items.unfurnished_house : items.anchor;
   const currentRate = carbon / currentItem * 100;
   const totalCarbonEmission = +getWeight(weight, carbon);
   
@@ -46,7 +46,7 @@ export const ComparativeInfo = () => {
       </p>
 
       <p className={styles.currency}>
-        1 {findKeyByValue(items, currentItem)} ≈ {getNumbersWithCommaSeparate(+getWeight(weight, currentItem))} {weight}
+          For reference, 1 {findKeyByValue(items, currentItem)?.replace('_',' ')} ≈ {getNumbersWithCommaSeparate(+getWeight(weight, currentItem))} {weight}
       </p>
     </div>
   )

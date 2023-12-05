@@ -51,7 +51,8 @@ export const CustomAutocomplete: React.FC<Props> = ({
                             backgroundColor: '#fff',
 
                             '&::placeholder': {
-                                color: '#C1B9B2',
+                                opacity: 1,
+                                color: '#c1b9b2',
                             }
                         },
                         '& .MuiOutlinedInput-root': {
