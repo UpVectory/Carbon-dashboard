@@ -16,7 +16,7 @@ export const About = () => {
                         The worldwide carbon footprint affects numerous environmental processes, global warming, and
                         climate change. Thus, we created the carbon dashboard to emphasize the importance of making
                         environmentally considered choices.
-                        Carbon dashboard is a demo project built on the data from CarbonSutra API. All calculations were
+                        Carbon dashboard is a demo project built on the data from <a href="https://rapidapi.com/carbonsutra/api/carbonsutra1">CarbonSutra API</a>. All calculations were
                         done to show approximate emissions and do not pretend to be 100% valid.
                     </p>
                     <p>
