@@ -38,6 +38,10 @@
   margin: auto 0;
   padding: 0 0 15px;
 
+  p > a {
+    border-bottom: 1px solid #61463a;
+  }
+
   p:not(:last-child) {
     margin: 0 0 16px 0;
   }
